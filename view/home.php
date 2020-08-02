@@ -1,7 +1,4 @@
 <?php
-require_once('../model/DbConnect.php');
-require_once('../model/Episode.php');
-require_once('../model/EpisodeManager.php');
 
 $episode = new EpisodeManager();
 $episodes = $episode->getEpisodes();
