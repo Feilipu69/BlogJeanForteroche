@@ -11,7 +11,6 @@ class Router
 		if ($this->get === 'home') {
 			$home = new Home();
 			$home->home();
-			require 'view/home.php';
 		}
 		else {
 			echo '404';

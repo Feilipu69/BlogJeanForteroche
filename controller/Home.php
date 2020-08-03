@@ -2,7 +2,10 @@
 class Home extends DbConnect
 {
 	public function home(){
-		$manager = new EpisodeManager($this->db);
-		$episodes = $manager->getEpisodes();
+		$episode = new EpisodeManager();
+		$episodes = $episode->getEpisodes();
+
+		$myView = new View('home');
+		$myView->render(['episodes' => $episodes]);
 	}
 }
