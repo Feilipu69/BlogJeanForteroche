@@ -12,6 +12,10 @@ class Router
 			$home = new Home();
 			$home->home();
 		}
+		elseif ($this->get === 'episode') {
+			$episode = new EpisodeController();
+			$episode->getChapter();
+		}
 		else {
 			echo '404';
 		}
