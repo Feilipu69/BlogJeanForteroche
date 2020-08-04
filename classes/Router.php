@@ -14,7 +14,7 @@ class Router
 		}
 		elseif ($this->get === 'episode') {
 			$episode = new FrontController();
-			$episode->getChapter();
+			$episode->getChapter($_GET['chapter']);
 		}
 		else {
 			echo '404';
