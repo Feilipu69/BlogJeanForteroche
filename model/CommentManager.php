@@ -6,6 +6,6 @@ class CommentManager extends DbConnect
 		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
 			$comments[] = new Comment($datas);
 		}
-		return $comments; // retourne bien l'array ad hoc
+		return $comments; 
 	}
 }

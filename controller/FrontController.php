@@ -1,6 +1,14 @@
 <?php
-class EpisodeController extends DbConnect
+class FrontController extends DbConnect
 {
+	public function home(){
+		$episode = new EpisodeManager();
+		$episodes = $episode->getEpisodes();
+
+		$myView = new View('home');
+		$myView->render(['episodes' => $episodes]);
+	}
+
 	public function getChapter(){
 		$manager = new EpisodeManager($this->db);
 		$episode = $manager->getEpisode($_GET['chapter']); 

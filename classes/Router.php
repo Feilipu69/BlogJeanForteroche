@@ -9,11 +9,11 @@ class Router
 
 	public function renderController(){
 		if ($this->get === 'home') {
-			$home = new Home();
+			$home = new FrontController();
 			$home->home();
 		}
 		elseif ($this->get === 'episode') {
-			$episode = new EpisodeController();
+			$episode = new FrontController();
 			$episode->getChapter();
 		}
 		else {
