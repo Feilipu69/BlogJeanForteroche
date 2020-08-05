@@ -10,10 +10,10 @@ class FrontController extends DbConnect
 	}
 
 	public function getChapter($chapter){
-		$manager = new EpisodeManager($this->db);
+		$manager = new EpisodeManager();
 		$episode = $manager->getEpisode($chapter); 
 
-		$episodeComments = new CommentManager($this->db);
+		$episodeComments = new CommentManager();
 		$comments = $episodeComments->getComments($chapter);
 
 		$myView = new View('episode');
