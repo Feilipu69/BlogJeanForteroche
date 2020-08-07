@@ -1,23 +1,24 @@
 <?php
 class Router
 {
-	private $get;
+	private $frontController;
 
-	public function __construct($get){
-		$this->get = $get;
+	public function __construct(){
+		$this->frontController = new FrontController();
 	}
 
 	public function renderController(){
-		if ($this->get === 'home') {
-			$home = new FrontController();
-			$home->home();
-		}
-		elseif ($this->get === 'episode') {
-			$episode = new FrontController();
-			$episode->getChapter($_GET['chapter']);
+		if (isset($_GET['get'])) {
+			if ($_GET['get'] === 'home') {
+				$this->frontController->home();
+			}
+			elseif ($_GET['get'] === 'episode') {
+				$this->frontController->getChapter($_GET['chapter']);
+			}
 		}
 		else {
-			echo '404';
+			//echo '404';
+			$this->frontController->home();
 		}
 	}
 }
