@@ -17,7 +17,6 @@ class Router
 			}
 		}
 		else {
-			//echo '404';
 			$this->frontController->home();
 		}
 	}
