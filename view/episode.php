@@ -13,6 +13,7 @@ if (isset($comments)) {
 			<textarea name="comment"></textarea>
 			<br>
 			<input type="submit" name='submit' />
+			<a href="episode?chapter=<?= $episode->getChapter(); ?>"><input type="button" value="Annuler" /></a>
 		</form>
 	</div>
 	<?php
