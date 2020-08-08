@@ -24,4 +24,10 @@ class FrontController extends DbConnect
 			]
 		);
 	}
+
+	public function addComment($chapter){
+		$manager = new CommentManager();
+		$comment = $manager->addComment($chapter);
+		header('Location:episode?chapter=' . $chapter);
+	}
 }

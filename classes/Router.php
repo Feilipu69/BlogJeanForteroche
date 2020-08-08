@@ -15,6 +15,9 @@ class Router
 			elseif ($_GET['get'] === 'episode') {
 				$this->frontController->getChapter($_GET['chapter']);
 			}
+			elseif ($_GET['get'] === 'addComment') {
+				$this->frontController->addComment($_GET['chapter']);
+			}
 		}
 		else {
 			$this->frontController->home();
