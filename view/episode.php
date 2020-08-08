@@ -8,9 +8,9 @@ if (isset($comments)) {
 	<div>
 		<form method=post action='<?= HOST; ?>addComment?chapter=<?= $episode->getChapter(); ?>'>
 			<label for="author">Pseudo : </label>
-			<input type="text" name="author" id="author" />
+			<input type="text" name="author" id="author" required/>
 			<br>
-			<textarea name="comment"></textarea>
+			<textarea name="comment" required></textarea>
 			<br>
 			<input type="submit" name='submit' />
 			<a href="episode?chapter=<?= $episode->getChapter(); ?>"><input type="button" value="Annuler" /></a>
@@ -19,10 +19,10 @@ if (isset($comments)) {
 	<?php
 	foreach ($comments as $comment) {
 		?>
-		<p><?= $comment->getAuthor(); ?>
+		<p><?= htmlspecialchars($comment->getAuthor()); ?>
 		<br>
-		<em>Ajouté le : <?= $comment->getDateComment(); ?></em></p>
-		<p><?= $comment->getComment(); ?></p>
+		<em>Ajouté le : <?= htmlspecialchars($comment->getDateComment()); ?></em></p>
+		<p><?= htmlspecialchars($comment->getComment()); ?></p>
 		<?php
 	}
 }
