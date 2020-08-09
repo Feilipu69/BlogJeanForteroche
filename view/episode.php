@@ -1,31 +1,31 @@
 <a href='<?= HOST; ?>home'>Accueil</a>
-<h1>Chapitre <?= $episode->getChapter() . ' : ' . $episode->getTitle(); ?></h1>
-<p><?= $episode->getContent(); ?></p>
+<h1>Chapitre <?= strip_tags($episode->getChapter()) . ' : ' . strip_tags($episode->getTitle()); ?></h1>
+<p><?= strip_tags($episode->getContent()); ?></p>
 <?php
 if (isset($comments)) {
 	?>
 	<p><strong>Commentaires</strong></p>
 	<div>
-		<form method="post" action="<?= HOST; ?>addComment?chapter=<?= $episode->getChapter(); ?>">
+		<form method="post" action="<?= HOST; ?>addComment?chapter=<?= strip_tags($episode->getChapter()); ?>">
 			<label for="author">Pseudo : </label>
 			<input type="text" name="author" id="author" required/>
 			<br>
 			<textarea name="comment" required></textarea>
 			<br>
 			<input type="submit" name='submit' />
-			<a href="episode?chapter=<?= $episode->getChapter(); ?>"><input type="button" value="Annuler" /></a>
+			<a href="episode?chapter=<?= strip_tags($episode->getChapter()); ?>"><input type="button" value="Annuler" /></a>
 		</form>
 	</div>
 	<?php
 	foreach ($comments as $comment) {
 		?>
 		<div>
-		<p><?= htmlspecialchars($comment->getAuthor()); ?>
+		<p><?= strip_tags($comment->getAuthor()); ?>
 		<br>
-		<em>Ajouté le : <?= htmlspecialchars($comment->getDateComment()); ?></em></p>
-		<p><?= htmlspecialchars($comment->getComment()); ?></p>
+		<em>Ajouté le : <?= strip_tags($comment->getDateComment()); ?></em></p>
+		<p><?= strip_tags($comment->getComment()); ?></p>
 		<div>
-		<p><a href="<?= HOST; ?>rudeComment?id=<?=$comment->getID(); ?>"><input type="button" value="Signaler le commentaire" /></a><?= htmlspecialchars($comment->getRudeComment()); ?></p>
+		<p><a href="<?= HOST; ?>rudeComment?id=<?=strip_tags($comment->getID()); ?>"><input type="button" value="Signaler le commentaire" /></a><?= strip_tags($comment->getRudeComment()); ?></p>
 		<?php
 	}
 }
