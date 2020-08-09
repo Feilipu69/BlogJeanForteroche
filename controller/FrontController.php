@@ -30,4 +30,12 @@ class FrontController extends DbConnect
 		$comment = $manager->addComment($chapter);
 		header('Location:episode?chapter=' . $chapter);
 	}
+
+	public function rudeComment($id){
+		$manager = new CommentManager();
+		$comment = $manager->getComment($id);
+		$episodeId = $comment->getEpisodeId();
+		$rudeComment = $manager->rudeComment($id);
+		header('Location:episode?chapter=' . $episodeId);
+	}
 }

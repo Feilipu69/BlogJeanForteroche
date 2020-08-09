@@ -18,6 +18,9 @@ class Router
 			elseif ($_GET['get'] === 'addComment') {
 				$this->frontController->addComment($_GET['chapter']);
 			}
+			elseif ($_GET['get'] === 'rudeComment') {
+				$this->frontController->rudeComment($_GET['id']);
+			}
 		}
 		else {
 			$this->frontController->home();

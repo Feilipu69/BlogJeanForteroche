@@ -6,7 +6,7 @@ if (isset($comments)) {
 	?>
 	<p><strong>Commentaires</strong></p>
 	<div>
-		<form method=post action='<?= HOST; ?>addComment?chapter=<?= $episode->getChapter(); ?>'>
+		<form method="post" action="<?= HOST; ?>addComment?chapter=<?= $episode->getChapter(); ?>">
 			<label for="author">Pseudo : </label>
 			<input type="text" name="author" id="author" required/>
 			<br>
@@ -19,10 +19,14 @@ if (isset($comments)) {
 	<?php
 	foreach ($comments as $comment) {
 		?>
+		<div>
 		<p><?= htmlspecialchars($comment->getAuthor()); ?>
 		<br>
 		<em>Ajouté le : <?= htmlspecialchars($comment->getDateComment()); ?></em></p>
 		<p><?= htmlspecialchars($comment->getComment()); ?></p>
+		<div>
+		<p><a href="<?= HOST; ?>rudeComment?id=<?=$comment->getID(); ?>"><input type="button" value="Signaler le commentaire" /></a><?= htmlspecialchars($comment->getRudeComment()); ?></p>
 		<?php
 	}
 }
+?>
