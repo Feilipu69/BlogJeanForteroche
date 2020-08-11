@@ -16,10 +16,13 @@ class Router
 				$this->frontController->getChapter($_GET['chapter']);
 			}
 			elseif ($_GET['get'] === 'addComment') {
-				$this->frontController->addComment($_GET['chapter']);
+				$this->frontController->addComment($_POST, $_GET['chapter']);
 			}
 			elseif ($_GET['get'] === 'rudeComment') {
 				$this->frontController->rudeComment($_GET['id']);
+			}
+			elseif ($_GET['get'] === 'register') {
+				$this->frontController->register($_POST);
 			}
 		}
 		else {

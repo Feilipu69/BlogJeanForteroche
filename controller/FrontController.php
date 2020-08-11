@@ -25,10 +25,12 @@ class FrontController extends DbConnect
 		);
 	}
 
-	public function addComment($chapter){
-		$manager = new CommentManager();
-		$comment = $manager->addComment($chapter);
-		header('Location:episode?chapter=' . $chapter);
+	public function addComment($post, $chapter){
+		if (isset($post['submit'])) {
+			$manager = new CommentManager();
+			$comment = $manager->addComment($post, $chapter);
+			header('Location:episode?chapter=' . $chapter);
+		}
 	}
 
 	public function rudeComment($id){
@@ -37,5 +39,15 @@ class FrontController extends DbConnect
 		$episodeId = $comment->getEpisodeId();
 		$rudeComment = $manager->rudeComment($id);
 		header('Location:episode?chapter=' . $episodeId);
+	}
+
+	public function register($post){
+		if (isset($post['register'])) {
+			$manager= new UserManager();
+			$manager->register($post);
+			header('Location:home');
+		}
+		$myView = new View('register');
+		$myView->render([]);
 	}
 }

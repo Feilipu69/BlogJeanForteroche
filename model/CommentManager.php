@@ -17,15 +17,14 @@ class CommentManager extends DbConnect
 		return $comment;
 	}
 
-	public function addComment($chapter){
-		if (!empty($_POST['author'] && !empty($_POST['comment']))) {
-			$req = $this->db->prepare('INSERT INTO comments(author, episodeId, comment, dateComment) VALUES(:author, :episodeId, :comment, NOW())');
-			$req->execute([
-				':author' => $_POST['author'],
-				':episodeId' => $chapter,
-				':comment' => $_POST['comment']
-			]);
-		}
+	public function addComment($post, $chapter){
+		$req = $this->db->prepare('INSERT INTO comments(author, episodeId, comment, dateComment) VALUES(:author, :episodeId, :comment, NOW())');
+		$newComment = new Comment($post);
+		$req->execute([
+			':author' => $newComment->getAuthor(),
+			':episodeId' => $chapter,
+			':comment' => $newComment->getComment()
+		]);
 	}
 
 	public function rudeComment($id){

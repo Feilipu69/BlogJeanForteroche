@@ -1,4 +1,3 @@
-<a href='<?= HOST; ?>home'>Accueil</a>
 <h1>Chapitre <?= strip_tags($episode->getChapter()) . ' : ' . strip_tags($episode->getTitle()); ?></h1>
 <p><?= strip_tags($episode->getContent()); ?></p>
 <?php
