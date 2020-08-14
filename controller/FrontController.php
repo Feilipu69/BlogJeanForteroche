@@ -27,9 +27,11 @@ class FrontController extends DbConnect
 
 	public function addComment($post, $chapter){
 		if (isset($post['submit'])) {
-			$manager = new CommentManager();
-			$comment = $manager->addComment($post, $chapter);
-			header('Location:episode?chapter=' . $chapter);
+			if (!empty($post['pseudo']) && !empty($post['comment'])) {
+				$manager = new CommentManager();
+				$comment = $manager->addComment($post, $chapter);
+				header('Location:episode?chapter=' . $chapter);
+			}
 		}
 	}
 
@@ -43,9 +45,17 @@ class FrontController extends DbConnect
 
 	public function register($post){
 		if (isset($post['register'])) {
-			$manager= new UserManager();
-			$manager->register($post);
-			header('Location:home');
+			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
+				$manager= new UserManager();
+				if ($manager->checkUser($post)) {
+					echo 'Ce login existe déjà.';
+				}
+				else {
+					$manager->register($post);
+					$_SESSION['login'] = $post['login'];
+					header('Location:home');
+				}
+			}
 		}
 		$myView = new View('register');
 		$myView->render([]);

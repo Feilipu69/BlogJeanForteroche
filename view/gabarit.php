@@ -11,6 +11,13 @@
 				<ul>
 					<a href="<?= HOST; ?>home"<li>Accueil</li></a>
 					<a href="<?= HOST; ?>register"<li>Compte</li></a>
+					<?php
+					if (isset($_SESSION['login'])) {
+						?>
+						<a href=""<li>Déconnexion</li></a>
+						<?php
+					}
+					?>
 				</ul>
 			</div>
 		</header>
