@@ -6,5 +6,5 @@
 	<input type="password" name="password" id="password" required />
 	<br>
 	<input type="submit" name="connection" value="Connexion" />
-	<a href="account"><input type="button" value="Annuler" /></a>
+	<a href="<?= HOST; ?>connection"><input type="button" value="Annuler" /></a>
 </form>

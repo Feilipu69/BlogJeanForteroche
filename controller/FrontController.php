@@ -49,6 +49,8 @@ class FrontController extends DbConnect
 				$manager = new UserManager();
 				if ($manager->checkPassword($post)) {
 					$_SESSION['login'] = $post['login'];
+					$roleId = $manager->getUserDatas();
+					$_SESSION['roleId'] = $roleId->getName();
 					header('Location:home');
 				} else {
 					echo 'Données incorrectes';
@@ -70,7 +72,8 @@ class FrontController extends DbConnect
 				else {
 					$manager->register($post);
 					$_SESSION['login'] = $post['login'];
-					$_SESSION['userId'] = $manager->getUserId();
+					$userId = $manager->getUserDatas();
+					$_SESSION['userId'] = $userId->getId();
 					header('Location:home');
 				}
 			}
@@ -111,7 +114,7 @@ class FrontController extends DbConnect
 	public function deleteCount($login){
 		$manager = new UserManager();
 		$manager->deleteCount($login);
-		unset($_SESSION['login']);
+		unset($_SESSION['login'], $_SESSION['userId']);
 		header('Location:home');
 	}
 }

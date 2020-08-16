@@ -13,16 +13,22 @@
 					<?php
 					if (!isset($_SESSION['login'])) {
 						?>
-						<a href="<?= HOST; ?>home"<li>Accueil</li></a>
-						<a href="<?= HOST; ?>connection"<li>Compte</li></a>
-						<a href="<?= HOST; ?>register"<li>Inscription</li></a>
+						<li><a href="<?= HOST; ?>home">Accueil</a></li>
+						<li><a href="<?= HOST; ?>connection">Compte</a></li>
+						<li><a href="<?= HOST; ?>register">Inscription</a></li>
 						<?php
 					} elseif (isset($_SESSION['login'])) {
 						?>
-						<a href="<?= HOST; ?>home"<li>Accueil</li></a>
-						<a href="<?= HOST; ?>updateDatas"<li>Modifier vos données</li></a>
-						<a href="<?= HOST; ?>deleteCount"<li>Suppression du compte</li></a>
-						<a href="<?= HOST; ?>disconnection"<li>Déconnexion</li></a>
+						<li><a href="<?= HOST; ?>home">Accueil</a></li>
+						<?php
+						if ($_SESSION['roleId'] === 'admin') {
+							?>
+							<li><a href="<?= HOST; ?>administration">Administration</a></li>
+							<?php
+						}
+						?>
+						<li><a href="<?= HOST; ?>updateDatas">Modifier vos données</a></li>
+						<li><a href="<?= HOST; ?>disconnection">Déconnexion</a></li>
 						<?php
 					}
 					?>

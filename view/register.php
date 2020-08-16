@@ -9,5 +9,5 @@
 	<input type="email" name="email" id="email" required />
 	<br>
 	<input type="submit" name="register" value="Inscription" />
-	<a href="register"><input type="button" value="Annuler" /></a>
+	<a href="<?= HOST; ?>register"><input type="button" value="Annuler" /></a>
 </form>

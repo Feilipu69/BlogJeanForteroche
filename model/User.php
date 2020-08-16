@@ -5,7 +5,7 @@ class User
 	private $login;
 	private $password;
 	private $email;
-	private $roleId;
+	private $name;
 
 	public function __construct(array $datas){
 		$this->hydrate($datas);
@@ -36,8 +36,8 @@ class User
 		return $this->email;
 	}
 
-	public function getRoleId(){
-		return $this->roleId;
+	public function getName(){
+		return $this->name;
 	}
 
 	public function setId(int $id){
@@ -58,7 +58,7 @@ class User
 		$this->email = $email;
 	}
 
-	public function roleId($roleId){
-		$this->roleId = $roleId;
+	public function setName($name){
+		$this->name = $name;
 	}
 }

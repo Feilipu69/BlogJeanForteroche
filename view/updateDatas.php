@@ -9,5 +9,6 @@
 	<input type="email" name="email" id="email" required />
 	<br>
 	<input type="submit" name="updateDatas" value="Modification" />
-	<a href="updateDatas"><input type="button" value="Annuler" /></a>
+	<a href="<?= HOST; ?>updateDatas"><input type="button" value="Annuler" /></a>
+	<a href="<?= HOST; ?>deleteCount"><input type="button" value="Supression du compte" /></a>
 </form>
