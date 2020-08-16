@@ -1,3 +1,4 @@
+<?= print_r($_SESSION); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,18 +10,32 @@
 		<header>
 			<div class="menu">
 				<ul>
-					<a href="<?= HOST; ?>home"<li>Accueil</li></a>
-					<a href="<?= HOST; ?>register"<li>Compte</li></a>
 					<?php
-					if (isset($_SESSION['login'])) {
+					if (!isset($_SESSION['login'])) {
 						?>
-						<a href=""<li>Déconnexion</li></a>
+						<a href="<?= HOST; ?>home"<li>Accueil</li></a>
+						<a href="<?= HOST; ?>connection"<li>Compte</li></a>
+						<a href="<?= HOST; ?>register"<li>Inscription</li></a>
+						<?php
+					} elseif (isset($_SESSION['login'])) {
+						?>
+						<a href="<?= HOST; ?>home"<li>Accueil</li></a>
+						<a href="<?= HOST; ?>updateDatas"<li>Modifier vos données</li></a>
+						<a href="<?= HOST; ?>deleteCount"<li>Suppression du compte</li></a>
+						<a href="<?= HOST; ?>disconnection"<li>Déconnexion</li></a>
 						<?php
 					}
 					?>
 				</ul>
 			</div>
 		</header>
+		<?php
+		if (isset($_SESSION['login'])) {
+			?>
+			<p>Bienvenue <?= $_SESSION['login']; ?></p>
+			<?php
+		}
+		?>
 		<?= $content; ?>
 	</body>
 </html>

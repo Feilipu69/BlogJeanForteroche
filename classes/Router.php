@@ -21,8 +21,20 @@ class Router
 			elseif ($_GET['get'] === 'rudeComment') {
 				$this->frontController->rudeComment($_GET['id']);
 			}
+			elseif ($_GET['get'] === 'connection') {
+				$this->frontController->connection($_POST);
+			}
 			elseif ($_GET['get'] === 'register') {
 				$this->frontController->register($_POST);
+			}
+			elseif ($_GET['get'] === 'updateDatas') {
+				$this->frontController->updateDatas($_POST);
+			}
+			elseif ($_GET['get'] === 'disconnection') {
+				$this->frontController->disconnection();
+			}
+			elseif ($_GET['get'] === 'deleteCount') {
+				$this->frontController->deleteCount($_SESSION['login']);
 			}
 		}
 		else {

@@ -28,4 +28,34 @@ class UserManager extends DbConnect
 		$newUser = $req->fetchColumn();
 		return $newUser;	
 	}
+
+	public function checkPassword($post){
+		$user = new User($post);
+		$req = $this->db->prepare('SELECT id, login, password FROM users WHERE login = ?');
+		$req->execute([
+			$user->getLogin()
+		]);
+		$datas = $req->fetch(PDO::FETCH_ASSOC);
+		$_SESSION['userId'] = $datas['id'];
+		$userPassword = password_verify($user->getPassword(), $datas['password']);
+		return $userPassword;
+	}
+
+	public function updateDatas($post){
+		$user = new User($post);
+		$req = $this->db->prepare('UPDATE users SET login = :login, password = :password, email = :email WHERE id = :id');
+		$req->execute([
+			':login' => $user->getLogin(),
+			':password' => password_hash($user->getPassword(), PASSWORD_DEFAULT),
+			':email' => $user->getEmail(),
+			':id' => $_SESSION['userId']
+		]);
+	}
+
+	public function deleteCount($login){
+		$req = $this->db->prepare('DELETE FROM users WHERE login = ?');
+		$req->execute([
+			$login
+		]);
+	}
 }

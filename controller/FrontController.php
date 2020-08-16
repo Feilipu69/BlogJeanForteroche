@@ -43,6 +43,23 @@ class FrontController extends DbConnect
 		header('Location:episode?chapter=' . $episodeId);
 	}
 
+	public function connection($post){
+		if (isset($post['connection'])) {
+			if (!empty($post['login']) && !empty($post['password'])) {
+				$manager = new UserManager();
+				if ($manager->checkPassword($post)) {
+					$_SESSION['login'] = $post['login'];
+					header('Location:home');
+				} else {
+					echo 'Données incorrectes';
+				}
+			}
+		}
+
+		$myView = new View('connection');
+		$myView->render([]);
+	}
+
 	public function register($post){
 		if (isset($post['register'])) {
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
@@ -56,8 +73,44 @@ class FrontController extends DbConnect
 					header('Location:home');
 				}
 			}
+
 		}
+
 		$myView = new View('register');
 		$myView->render([]);
+	}
+
+	public function updateDatas($post){
+		if (isset($post['updateDatas'])) {
+			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
+				$manager= new UserManager();
+				if ($manager->checkUser($post)) {
+					echo 'Ce login existe déjà.';
+				}
+				else {
+					$manager->updateDatas($post);
+					$_SESSION['login'] = $post['login'];
+					header('Location:home');
+				}
+			}
+		}
+
+		$myView = new View('updateDatas');
+		$myView->render([]);
+	}
+
+	public function disconnection(){
+		if (isset($_SESSION['login'])) {
+			unset($_SESSION['login']);
+			session_destroy();
+			header('Location:home');
+		}
+	}
+
+	public function deleteCount($login){
+		$manager = new UserManager();
+		$manager->deleteCount($login);
+		unset($_SESSION['login']);
+		header('Location:home');
 	}
 }
