@@ -11,6 +11,15 @@ class UserManager extends DbConnect
 		]);
 	}
 
+	public function getUserId(){
+		$req = $this->db->prepare('SELECT id FROM users WHERE login = ?');
+		$req->execute([
+			$_SESSION['login']
+		]);
+		$userId =  $req->fetch(PDO::FETCH_ASSOC);
+		return $userId['id'];
+	}
+
 	public function getUSers(){
 		$req = $this->db->query('SELECT * FROM users');
 		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {

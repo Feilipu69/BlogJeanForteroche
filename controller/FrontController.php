@@ -70,6 +70,7 @@ class FrontController extends DbConnect
 				else {
 					$manager->register($post);
 					$_SESSION['login'] = $post['login'];
+					$_SESSION['userId'] = $manager->getUserId();
 					header('Location:home');
 				}
 			}
