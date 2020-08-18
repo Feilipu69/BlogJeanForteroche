@@ -30,4 +30,13 @@ class CommentManager extends DbConnect
 	public function rudeComment($id){
 		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment + 1 WHERE id = ' . $id);
 	}
+
+	public function getRudeComments(){
+		$rudeComments = [];
+		$req = $this->db->query('SELECT * FROM comments WHERE rudeComment > 0');
+		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
+			$rudeComments[] = new Comment($datas);
+		}
+		return  $rudeComments;
+	}
 }

@@ -36,6 +36,9 @@ class Router
 			elseif ($_GET['get'] === 'deleteCount') {
 				$this->frontController->deleteCount($_SESSION['login']);
 			}
+			elseif ($_GET['get'] === 'administration') {
+				$this->frontController->administration();
+			}
 		}
 		else {
 			$this->frontController->home();

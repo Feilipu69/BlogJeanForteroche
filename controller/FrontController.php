@@ -117,4 +117,18 @@ class FrontController extends DbConnect
 		unset($_SESSION['login'], $_SESSION['userId']);
 		header('Location:home');
 	}
+
+	public function administration(){
+		// récupération des épisodes et des rudes comment liés à l'épisode 
+		// création, modification et supression d'un épisode
+		$episode = new EpisodeManager();
+		$episodes = $episode->getEpisodes();
+		$comments = new CommentManager();
+		$rudeComments = $comments->getRudeComments();
+		$myView = new View('administration');
+		$myView->render([
+			'episodes' => $episodes,
+			'rudeComments' => $rudeComments
+		]);
+	}
 }
