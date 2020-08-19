@@ -15,4 +15,14 @@ class EpisodeManager extends DbConnect
 		$episode = new Episode($datas);
 		return $episode;
 	}
+
+	public function addEpisode($post){
+		$req = $this->db->prepare('INSERT INTO episodes (chapter, title, content, creationDate, userId) VALUES (:chapter, :title, :content, NOW(), 1)');
+		$newEpisode = new Episode($post);
+		$req->execute([
+			':chapter' => $newEpisode->getChapter(),
+			':title' => $newEpisode->getTitle(),
+			':content' => $newEpisode->getContent()
+		]);
+	}
 }

@@ -39,6 +39,9 @@ class Router
 			elseif ($_GET['get'] === 'administration') {
 				$this->frontController->administration();
 			}
+			elseif($_GET['get'] === 'addEpisode'){
+				$this->frontController->addEpisode($_POST);
+			}
 		}
 		else {
 			$this->frontController->home();

@@ -1,5 +1,5 @@
 <h3>Episodes</h3>
-<a href="">Ajouter un épisode</a>
+<a href="<?= HOST; ?>addEpisode">Ajouter un épisode</a>
 <table>
 	<tr>
 		<th>Chapitre</th>
@@ -16,7 +16,7 @@ foreach ($episodes as $episode) {
 			<td><a href="episode?chapter=<?=$episode->getChapter(); ?>"><?=$episode->getTitle(); ?></a></td>
 			<td><?= $episode->getCreationDate(); ?></td>
 			<td><?= $episode->getUpdateDate(); ?></td>
-			<td><a href="">Modifier</a><a href="">Supprimer</a></td>
+			<td><a href="updateEpisode?chapter=<?= $episode->getChapter(); ?>">Modifier</a><a href="deleteEpisode?chapter=<?= $episode->getChapter(); ?>">Supprimer</a></td>
 		</tr>
 	<?php
 }
@@ -39,7 +39,7 @@ foreach ($episodes as $episode) {
 			<td><?= $rudeComment->getEpisodeId(); ?></td>
 			<td><?= $rudeComment->getComment(); ?></td>
 			<td><?= $rudeComment->getRudeComment(); ?></td>
-			<td>Supprimer</td>
+			<td><a href="deleteComment?comment=<?= $rudeComment->getEpisodeId(); ?>">Supprimer</a></td>
 		<?php
 	}
 	?>
