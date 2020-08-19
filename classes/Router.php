@@ -42,6 +42,9 @@ class Router
 			elseif($_GET['get'] === 'addEpisode'){
 				$this->frontController->addEpisode($_POST);
 			}
+			elseif ($_GET['get'] === 'updateEpisode') {
+				$this->frontController->updateEpisode($_POST, $_GET['chapter']);
+			}
 		}
 		else {
 			$this->frontController->home();

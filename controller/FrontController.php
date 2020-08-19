@@ -141,4 +141,15 @@ class FrontController extends DbConnect
 		$myView = new View('addEpisode');
 		$myView->render([]);
 	}
+
+	public function updateEpisode($post, $chapter){
+		if (isset($post['updateEpisode'])) {
+			if (!empty($post['title']) && !empty($post['content'])) {
+				$episode = new EpisodeManager();
+				$updateEpisode = $episode->updateEpisode($post, $chapter);
+			}
+		}
+		$myView = new View('updateEpisode');
+		$myView->render([]);
+	}
 }

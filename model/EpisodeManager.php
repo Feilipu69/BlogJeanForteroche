@@ -25,4 +25,15 @@ class EpisodeManager extends DbConnect
 			':content' => $newEpisode->getContent()
 		]);
 	}
+
+	public function updateEpisode($post, $chapter){
+		$episode = new Episode($post);
+		$req = $this->db->prepare('UPDATE episodes SET title = :title, content = :content, updateDate = NOW() WHERE chapter = :chapter');
+		$req->execute([
+			':title' => $episode->getTitle(),
+			':content' => $episode->getContent(),
+			':chapter' => $chapter
+		]);
+		header('Location:home');
+	}
 }
