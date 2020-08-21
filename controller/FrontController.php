@@ -152,4 +152,14 @@ class FrontController extends DbConnect
 		$myView = new View('updateEpisode');
 		$myView->render([]);
 	}
+
+	public function deleteEpisode($chapter){
+		$episode = new EpisodeManager();
+		$deleteEpisode = $episode->deleteEpisode($chapter);
+	}
+
+	public function deleteComment($id){
+		$comment = new CommentManager();
+		$deleteComment = $comment->deleteComment($id);
+	}
 }

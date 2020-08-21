@@ -45,6 +45,12 @@ class Router
 			elseif ($_GET['get'] === 'updateEpisode') {
 				$this->frontController->updateEpisode($_POST, $_GET['chapter']);
 			}
+			elseif ($_GET['get'] === "deleteEpisode") {
+				$this->frontController->deleteEpisode($_GET['chapter']);
+			}
+			elseif ($_GET['get'] === 'deleteComment') {
+				$this->frontController->deleteComment($_GET['id']);
+			}
 		}
 		else {
 			$this->frontController->home();

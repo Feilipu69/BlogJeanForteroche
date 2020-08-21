@@ -39,7 +39,7 @@ foreach ($episodes as $episode) {
 			<td><?= $rudeComment->getEpisodeId(); ?></td>
 			<td><?= $rudeComment->getComment(); ?></td>
 			<td><?= $rudeComment->getRudeComment(); ?></td>
-			<td><a href="deleteComment?comment=<?= $rudeComment->getEpisodeId(); ?>">Supprimer</a></td>
+			<td><a href="deleteComment?id=<?= $rudeComment->getId(); ?>">Supprimer</a></td>
 		<?php
 	}
 	?>
