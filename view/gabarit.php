@@ -1,4 +1,3 @@
-<?= print_r($_GET); ?>
 <!DOCTYPE html>
 <html>
 	<head>
