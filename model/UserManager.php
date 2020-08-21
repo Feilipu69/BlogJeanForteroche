@@ -1,4 +1,5 @@
 <?php
+
 class UserManager extends DbConnect
 {
 	public function register($post){

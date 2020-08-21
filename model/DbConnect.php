@@ -1,4 +1,5 @@
 <?php
+
 abstract class DbConnect
 {
 	protected $db;

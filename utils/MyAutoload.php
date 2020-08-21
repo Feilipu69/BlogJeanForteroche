@@ -1,4 +1,5 @@
 <?php
+
 class MyAutoload
 {
 	public static function start(){

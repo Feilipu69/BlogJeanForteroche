@@ -1,4 +1,5 @@
 <?php
+
 class FrontController extends DbConnect
 {
 	public function home(){
@@ -27,7 +28,7 @@ class FrontController extends DbConnect
 
 	public function addComment($post, $chapter){
 		if (isset($post['submit'])) {
-			if (!empty($post['pseudo']) && !empty($post['comment'])) {
+			if (!empty($post['author']) && !empty($post['comment'])) {
 				$manager = new CommentManager();
 				$comment = $manager->addComment($post, $chapter);
 				header('Location:episode?chapter=' . $chapter);
@@ -37,10 +38,8 @@ class FrontController extends DbConnect
 
 	public function rudeComment($id){
 		$manager = new CommentManager();
-		$comment = $manager->getComment($id);
-		$episodeId = $comment->getEpisodeId();
 		$rudeComment = $manager->rudeComment($id);
-		header('Location:episode?chapter=' . $episodeId);
+		header('Location:home');
 	}
 
 	public function connection($post){
@@ -118,6 +117,7 @@ class FrontController extends DbConnect
 		header('Location:home');
 	}
 
+	/*
 	public function administration(){
 		$episode = new EpisodeManager();
 		$episodes = $episode->getEpisodes();
@@ -162,4 +162,5 @@ class FrontController extends DbConnect
 		$comment = new CommentManager();
 		$deleteComment = $comment->deleteComment($id);
 	}
+	*/
 }

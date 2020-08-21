@@ -27,7 +27,7 @@ if (isset($comments) && isset($_SESSION['login'])) {
 		<p><?= strip_tags($comment->getComment()); ?></p>
 		<p>Signalement(s) du commentaire : <?= strip_tags($comment->getRudeComment()); ?></p>
 		<div>
-		<p><a href="<?= HOST; ?>rudeComment?id=<?=strip_tags($comment->getID()); ?>"><input type="button" value="Signaler le commentaire" /></a></p>
+		<p><a href="<?= HOST; ?>rudeComment?id=<?=strip_tags($comment->getId()); ?>"><input type="button" value="Signaler le commentaire" /></a></p>
 		<?php
 	}
 }

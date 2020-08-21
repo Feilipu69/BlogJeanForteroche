@@ -1,4 +1,5 @@
 <?php
+
 class EpisodeManager extends DbConnect
 {
 	public function getEpisodes(){

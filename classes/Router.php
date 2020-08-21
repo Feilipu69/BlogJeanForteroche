@@ -1,10 +1,13 @@
 <?php
+
 class Router
 {
 	private $frontController;
+	private $adminController;
 
 	public function __construct(){
 		$this->frontController = new FrontController();
+		$this->adminController = new AdminController();
 	}
 
 	public function renderController(){
@@ -37,19 +40,19 @@ class Router
 				$this->frontController->deleteCount($_SESSION['login']);
 			}
 			elseif ($_GET['get'] === 'administration') {
-				$this->frontController->administration();
+				$this->adminController->administration();
 			}
 			elseif($_GET['get'] === 'addEpisode'){
-				$this->frontController->addEpisode($_POST);
+				$this->adminController->addEpisode($_POST);
 			}
 			elseif ($_GET['get'] === 'updateEpisode') {
-				$this->frontController->updateEpisode($_POST, $_GET['chapter']);
+				$this->adminController->updateEpisode($_POST, $_GET['chapter']);
 			}
 			elseif ($_GET['get'] === "deleteEpisode") {
-				$this->frontController->deleteEpisode($_GET['chapter']);
+				$this->adminController->deleteEpisode($_GET['chapter']);
 			}
 			elseif ($_GET['get'] === 'deleteComment') {
-				$this->frontController->deleteComment($_GET['id']);
+				$this->adminController->deleteComment($_GET['id']);
 			}
 		}
 		else {

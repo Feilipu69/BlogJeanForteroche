@@ -1,9 +1,10 @@
 <?php
+
 class CommentManager extends DbConnect
 {
 	public function getComments($chapter){
 		$comments = [];
-		$req = $this->db->query('SELECT author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment FROM comments WHERE episodeId = ' . $chapter);
+		$req = $this->db->query('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment FROM comments WHERE episodeId = ' . $chapter);
 		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
 			$comments[] = new Comment($datas);
 		}
@@ -11,7 +12,7 @@ class CommentManager extends DbConnect
 	}
 
 	public function getComment($episodeId){
-		$req = $this->db->query('SELECT * FROM comments WHERE id = ' . $episodeId);
+		$req = $this->db->query('SELECT * FROM comments WHERE episodeId = ' . $episodeId);
 		$datas = $req->fetch(PDO::FETCH_ASSOC);
 		$comment = new Comment($datas);
 		return $comment;
