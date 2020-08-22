@@ -69,7 +69,7 @@ class Comment
 		$this->dateComment = $dateComment;
 	}
 
-	public function setRudeComment(string $rudeComment){
+	public function setRudeComment($rudeComment){
 		$this->rudeComment = $rudeComment;
 	}
 }

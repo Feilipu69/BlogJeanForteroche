@@ -4,7 +4,7 @@ class CommentManager extends DbConnect
 {
 	public function getComments($chapter){
 		$comments = [];
-		$req = $this->db->query('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment FROM comments WHERE episodeId = ' . $chapter);
+		$req = $this->db->query('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ' . $chapter);
 		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
 			$comments[] = new Comment($datas);
 		}

@@ -21,7 +21,7 @@ class FrontController extends DbConnect
 		$myView->render(
 			[
 				'episode' => $episode,
-				'comments' => $comments
+				'comments' => $comments,
 			]
 		);
 	}
