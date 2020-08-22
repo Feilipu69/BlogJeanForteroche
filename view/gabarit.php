@@ -20,7 +20,7 @@
 						?>
 						<li><a href="<?= HOST; ?>home">Accueil</a></li>
 						<?php
-						if ($_SESSION['roleId'] === 'admin') {
+						if (isset($_SESSION['roleId']) && $_SESSION['roleId'] === 'admin') {
 							?>
 							<li><a href="<?= HOST; ?>administration">Administration</a></li>
 							<?php
