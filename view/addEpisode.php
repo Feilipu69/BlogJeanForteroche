@@ -5,7 +5,7 @@
 	<label for="title">Titre : </label>
 	<input type="text" name="title" id="title" />
 	<br>
-	<textarea name="content"></textarea>
+	<textarea name="content" id="form"></textarea>
 	<br>
 	<input type="submit" name="addEpisode" />
 	<a href="<<?= HOST; ?>addEpisode"><input type="button" value="Annuler" /></a>

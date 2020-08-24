@@ -84,9 +84,10 @@ class FrontController extends DbConnect
 	}
 
 	public function updateDatas($post){
+		$manager= new UserManager();
+		$userDatas = $manager->getUserDatas();
 		if (isset($post['updateDatas'])) {
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
-				$manager= new UserManager();
 				if ($manager->checkUser($post)) {
 					echo 'Ce login existe déjà.';
 				}
@@ -99,7 +100,9 @@ class FrontController extends DbConnect
 		}
 
 		$myView = new View('updateDatas');
-		$myView->render([]);
+		$myView->render([
+			'userDatas' => $userDatas
+		]);
 	}
 
 	public function disconnection(){

@@ -27,14 +27,17 @@ class AdminController extends DbConnect
 	}
 
 	public function updateEpisode($post, $chapter){
+		$episode = new EpisodeManager();
+		$episodeDatas = $episode->getEpisode($chapter);
 		if (isset($post['updateEpisode'])) {
 			if (!empty($post['title']) && !empty($post['content'])) {
-				$episode = new EpisodeManager();
 				$updateEpisode = $episode->updateEpisode($post, $chapter);
 			}
 		}
 		$myView = new View('updateEpisode');
-		$myView->render([]);
+		$myView->render([
+			'episodeDatas' => $episodeDatas
+		]);
 	}
 
 	public function deleteEpisode($chapter){

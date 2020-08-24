@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<script src="https://cdn.tiny.cloud/1/wh9z1mfuolvg4lwiul6nr0x5ur1txczi3ksrn9vm58r2itps/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 		<title>Billet simple pour l'Alaska</title>
 	</head>
 	<body>
@@ -33,7 +34,6 @@
 					?>
 				</ul>
 			</div>
-		</header>
 		<?php
 		if (isset($_SESSION['login'])) {
 			?>
@@ -41,6 +41,13 @@
 			<?php
 		}
 		?>
+		<img src="utils/trainAlaska.png" alt="Train d'Alaska" />
+		</header>
 		<?= $content; ?>
+		<script>
+			tinymce.init({
+				selector: 'textarea#form'
+			});
+		</script>
 	</body>
 </html>
