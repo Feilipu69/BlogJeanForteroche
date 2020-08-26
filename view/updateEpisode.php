@@ -1,9 +1,12 @@
 <form method="post" action="<?= HOST; ?>updateEpisode?chapter=<?= $_GET['chapter']; ?>">
 	<label for="title">Titre : </label>
+	<br>
 	<input type="text" name="title" id="title" value="<?= isset($episodeDatas) ? strip_tags($episodeDatas->getTitle()) : ''; ?>"/>
+	<br>
+	<label for="content">Contenu : </label>
 	<br>
 	<textarea name="content" id="form"><?= isset($episodeDatas) ? strip_tags($episodeDatas->getContent()) : ''; ?></textarea>
 	<br>
-	<input type="submit" name="updateEpisode" />
-	<a href="<?= HOST; ?>updateEpisode?chapter=<?= $_GET['chapter']; ?>"><input type="button" value="Annuler" /></a>
+	<input type="submit" name="updateEpisode" class="btn btn-dark" />
+	<a href="<?= HOST; ?>updateEpisode?chapter=<?= $_GET['chapter']; ?>"><input type="button" value="Annuler" class="btn btn-dark" /></a>
 </form>

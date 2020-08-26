@@ -1,4 +1,7 @@
 <?php
+/*
+namespace Bihin\Forteroche\utils;
+*/
 
 class MyAutoload
 {
@@ -28,5 +31,11 @@ class MyAutoload
 		elseif (file_exists(CONTROLLER . $class . '.php')) {
 			require_once CONTROLLER . $class . '.php';
 		}
+
+		/*
+		$class = str_replace('Bihin\Forteroche\\', '', $class);
+		$class = str_replace('\\', '/', $class);
+		require $class . '.php';
+		*/
 	}
 }

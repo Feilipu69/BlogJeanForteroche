@@ -1,4 +1,9 @@
 <?php
+/*
+namespace Bihin\Forteroche\model;
+
+use Bihin\Forteroche\model\User;
+*/
 
 class UserManager extends DbConnect
 {

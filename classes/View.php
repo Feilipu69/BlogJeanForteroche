@@ -1,4 +1,7 @@
 <?php
+/*
+namespace Bihin\Forteroche\classes;
+*/
 
 class View
 {

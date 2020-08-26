@@ -1,4 +1,11 @@
 <?php
+/*
+namespace Bihin\Forteroche\controller;
+
+use Bihin\Forteroche\model\EpisodeManager;
+use Bihin\Forteroche\model\CommentManager;
+use Bihin\Forteroche\classes\View;
+*/
 
 class AdminController extends DbConnect
 {
@@ -15,15 +22,20 @@ class AdminController extends DbConnect
 	}
 
 	public function addEpisode($post){
+		$episode = new EpisodeManager();
+		$episodes = $episode->getEpisodes();
+		$newChapter = end($episodes)->getChapter() + 1;
 		if (isset($post['addEpisode'])) {
 			if (!empty($post['chapter']) && !empty($post['title']) && !empty($post['content'])) {
-				$episode = new EpisodeManager();
 				$newEpisode = $episode->addEpisode($post);
 				header('Location:home');
 			}
 		}
+
 		$myView = new View('addEpisode');
-		$myView->render([]);
+		$myView->render([
+			'newChapter' => $newChapter
+		]);
 	}
 
 	public function updateEpisode($post, $chapter){

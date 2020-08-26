@@ -1,4 +1,7 @@
 <?php
+/*
+namespace Bihin\Forteroche\model;
+*/
 
 class Comment
 {
