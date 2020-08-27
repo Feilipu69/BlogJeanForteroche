@@ -1,12 +1,4 @@
 <?php
-/*
-namespace Bihin\Forteroche\controller;
-
-use Bihin\Forteroche\model\EpisodeManager;
-use Bihin\Forteroche\model\CommentManager;
-use Bihin\Forteroche\classes\View;
-*/
-
 class AdminController extends DbConnect
 {
 	public function administration(){

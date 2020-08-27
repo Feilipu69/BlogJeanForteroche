@@ -1,8 +1,4 @@
 <?php
-/*
-namespace Bihin\Forteroche\model;
-*/
-
 class User
 {
 	private $id;

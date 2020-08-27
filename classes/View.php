@@ -1,21 +1,17 @@
 <?php
-/*
-namespace Bihin\Forteroche\classes;
-*/
-
 class View
 {
-	private $template;
+	private $file;
 
-	public function __construct($template){
-		$this->template = $template;
+	public function __construct($file){
+		$this->file = $file;
 	}
 
 	public function render($params = []){
 		extract($params);
-		$template = $this->template;
+		$file = $this->file;
 		ob_start();
-		require_once VIEW . $template . '.php';
+		require_once VIEW . $file . '.php';
 		$content = ob_get_clean();
 		require_once VIEW . 'gabarit.php';
 	}

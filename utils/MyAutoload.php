@@ -1,8 +1,4 @@
 <?php
-/*
-namespace Bihin\Forteroche\utils;
-*/
-
 class MyAutoload
 {
 	public static function start(){
@@ -22,6 +18,9 @@ class MyAutoload
 
 	public static function autoload($class)
 	{
+		//$class = str_replace('Bihin\Forteroche\\', '', $class);
+		//$class = str_replace('\\', '/', $class);
+
 		if (file_exists(MODEL . $class . '.php')) {
 			require_once MODEL . $class . '.php';
 		}

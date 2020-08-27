@@ -1,10 +1,4 @@
 <?php
-/*
-namespace Bihin\Forteroche\model;
-
-use Bihin\Forteroche\model\Episode;
-*/
-
 class EpisodeManager extends DbConnect
 {
 	public function getEpisodes(){
