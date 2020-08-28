@@ -67,7 +67,7 @@ class AdminController extends DbConnect
 	}
 
 	public function deleteComment($id){
-		if ($this->checkLogin) {
+		if ($this->checkLogin()) {
 			$comment = new CommentManager();
 			$deleteComment = $comment->deleteComment($id);
 		}
