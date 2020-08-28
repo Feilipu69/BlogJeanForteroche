@@ -1,4 +1,5 @@
 <?php
+
 class Episode
 {
 	private $id;

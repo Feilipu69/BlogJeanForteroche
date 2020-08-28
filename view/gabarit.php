@@ -66,7 +66,7 @@
 					<?php
 				}
 				?>
-				<img src="utils/trainAlaska.png" alt="Train d'Alaska" class="img-fluid mb-3" />
+				<img src="public/trainAlaska.png" alt="Train d'Alaska" class="img-fluid mb-3" />
 			</header>
 		</div>
 		<div class="container">

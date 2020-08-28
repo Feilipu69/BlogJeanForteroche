@@ -1,4 +1,5 @@
 <?php
+
 class CommentManager extends DbConnect
 {
 	public function getComments($chapter){

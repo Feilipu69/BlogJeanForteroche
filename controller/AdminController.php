@@ -1,56 +1,75 @@
 <?php
+
 class AdminController extends DbConnect
 {
+	public function checkLogin(){
+		if ($_SESSION['login'] !== 'Jean') {
+			header('Location:home');
+		} else {
+			return true;
+		}
+	}
+
 	public function administration(){
-		$episode = new EpisodeManager();
-		$episodes = $episode->getEpisodes();
-		$comments = new CommentManager();
-		$rudeComments = $comments->getRudeComments();
-		$myView = new View('administration');
-		$myView->render([
-			'episodes' => $episodes,
-			'rudeComments' => $rudeComments
-		]);
+		if ($this->checkLogin()) {
+			$episode = new EpisodeManager();
+			$episodes = $episode->getEpisodes();
+			$comments = new CommentManager();
+			$rudeComments = $comments->getRudeComments();
+			$myView = new View('administration');
+			$myView->render([
+				'episodes' => $episodes,
+				'rudeComments' => $rudeComments
+			]);
+		}
 	}
 
 	public function addEpisode($post){
-		$episode = new EpisodeManager();
-		$episodes = $episode->getEpisodes();
-		$newChapter = end($episodes)->getChapter() + 1;
-		if (isset($post['addEpisode'])) {
-			if (!empty($post['chapter']) && !empty($post['title']) && !empty($post['content'])) {
-				$newEpisode = $episode->addEpisode($post);
-				header('Location:home');
+		if ($this->checkLogin()) {
+			$episode = new EpisodeManager();
+			$episodes = $episode->getEpisodes();
+			$newChapter = end($episodes)->getChapter() + 1;
+			if (isset($post['addEpisode'])) {
+				if (!empty($post['chapter']) && !empty($post['title']) && !empty($post['content'])) {
+					$newEpisode = $episode->addEpisode($post);
+					header('Location:home');
+				}
 			}
-		}
 
-		$myView = new View('addEpisode');
-		$myView->render([
-			'newChapter' => $newChapter
-		]);
+			$myView = new View('addEpisode');
+			$myView->render([
+				'newChapter' => $newChapter
+			]);
+		}
 	}
 
 	public function updateEpisode($post, $chapter){
-		$episode = new EpisodeManager();
-		$episodeDatas = $episode->getEpisode($chapter);
-		if (isset($post['updateEpisode'])) {
-			if (!empty($post['title']) && !empty($post['content'])) {
-				$updateEpisode = $episode->updateEpisode($post, $chapter);
+		if ($this->checkLogin()) {
+			$episode = new EpisodeManager();
+			$episodeDatas = $episode->getEpisode($chapter);
+			if (isset($post['updateEpisode'])) {
+				if (!empty($post['title']) && !empty($post['content'])) {
+					$updateEpisode = $episode->updateEpisode($post, $chapter);
+				}
 			}
+			$myView = new View('updateEpisode');
+			$myView->render([
+				'episodeDatas' => $episodeDatas
+			]);
 		}
-		$myView = new View('updateEpisode');
-		$myView->render([
-			'episodeDatas' => $episodeDatas
-		]);
 	}
 
 	public function deleteEpisode($chapter){
-		$episode = new EpisodeManager();
-		$deleteEpisode = $episode->deleteEpisode($chapter);
+		if ($this->checkLogin()) {
+			$episode = new EpisodeManager();
+			$deleteEpisode = $episode->deleteEpisode($chapter);
+		}
 	}
 
 	public function deleteComment($id){
-		$comment = new CommentManager();
-		$deleteComment = $comment->deleteComment($id);
+		if ($this->checkLogin) {
+			$comment = new CommentManager();
+			$deleteComment = $comment->deleteComment($id);
+		}
 	}
 }
