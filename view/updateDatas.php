@@ -12,6 +12,6 @@
 	<input type="email" name="email" id="email" value="<?= isset($userDatas) ? strip_tags($userDatas->getEmail()) : ''; ?>"required />
 	<br>
 	<input type="submit" name="updateDatas" value="Modification" class="btn btn-dark mt-4" />
-	<a href="index.php?get=updateDatas"><input type="button" value="Annuler" class="btn btn-dark mt-4" /></a>
+	<a href="index.php?get=updateDatas"><input type="button" value="Annuler" class="btn btn-dark mt-4" /></a><br>
 	<a href="index.php?get=deleteCount"><input type="button" value="Supression du compte" class="btn btn-danger mt-4" /></a>
 </form>
