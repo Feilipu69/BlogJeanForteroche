@@ -1,8 +1,10 @@
 <?php
-/*
 namespace Bihin\Forteroche\model;
-use Bihin\Forteroche\model\Episode;
-*/
+
+use Bihin\Forteroche\model\{
+	DbConnect,
+	Episode
+};
 
 require_once 'model/Episode.php';
 
@@ -10,7 +12,7 @@ class EpisodeManager extends DbConnect
 {
 	public function getEpisodes(){
 		$req = $this->db->query('SELECT id, chapter, title, content, DATE_FORMAT(creationDate, "%d/%m/%Y à %H:%i:%s") AS creationDate, DATE_FORMAT(updateDate, "%d/%m/%Y à %H:%i:%s") AS updateDate FROM episodes');
-		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
+		while ($datas = $req->fetch()) {
 			$episodes[] = new Episode($datas);
 		}
 		return $episodes;
@@ -18,7 +20,7 @@ class EpisodeManager extends DbConnect
 
 	public function getEpisode($chapter){
 		$req = $this->db->query('SELECT * FROM episodes WHERE chapter = ' . $chapter);
-		$datas = $req->fetch(PDO::FETCH_ASSOC);
+		$datas = $req->fetch();
 		$episode = new Episode($datas);
 		return $episode;
 	}

@@ -1,5 +1,5 @@
 <?php
-//namespace Bihin\Forteroche\model;
+namespace Bihin\Forteroche\model;
 
 class Comment
 {

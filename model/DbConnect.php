@@ -1,9 +1,8 @@
 <?php
-/*
+
 namespace Bihin\Forteroche\model;
 use PDO;
 use Exception;
-*/
 
 abstract class DbConnect
 {

@@ -1,8 +1,10 @@
 <?php
-/*
 namespace Bihin\Forteroche\model;
-use Bihin\Forteroche\model\Comment;
-*/
+
+use Bihin\Forteroche\model\{
+	DbConnect,
+	Comment
+};
 
 require_once 'model/Comment.php';
 
@@ -11,7 +13,7 @@ class CommentManager extends DbConnect
 	public function getComments($chapter){
 		$comments = [];
 		$req = $this->db->query('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ' . $chapter);
-		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
+		while ($datas = $req->fetch()) {
 			$comments[] = new Comment($datas);
 		}
 		return $comments; 
@@ -19,7 +21,7 @@ class CommentManager extends DbConnect
 
 	public function getComment($episodeId){
 		$req = $this->db->query('SELECT * FROM comments WHERE episodeId = ' . $episodeId);
-		$datas = $req->fetch(PDO::FETCH_ASSOC);
+		$datas = $req->fetch();
 		$comment = new Comment($datas);
 		return $comment;
 	}
@@ -41,7 +43,7 @@ class CommentManager extends DbConnect
 	public function getRudeComments(){
 		$rudeComments = [];
 		$req = $this->db->query('SELECT * FROM comments WHERE rudeComment > 0');
-		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
+		while ($datas = $req->fetch()) {
 			$rudeComments[] = new Comment($datas);
 		}
 		return  $rudeComments;

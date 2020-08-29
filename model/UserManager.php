@@ -1,8 +1,11 @@
 <?php
-/*
+
 namespace Bihin\Forteroche\model;
-use Bihin\Forteroche\model\User;
-*/
+
+use Bihin\Forteroche\model\{
+	DbConnect,
+	User
+};
 
 require_once 'model/User.php';
 
@@ -23,7 +26,7 @@ class UserManager extends DbConnect
 		$req->execute([
 			$_SESSION['login']
 		]);
-		while($datas =  $req->fetch(PDO::FETCH_ASSOC)){
+		while($datas =  $req->fetch()){
 			$userDatas = new User($datas);
 		};
 		return $userDatas;
@@ -31,7 +34,7 @@ class UserManager extends DbConnect
 
 	public function getUSers(){
 		$req = $this->db->query('SELECT * FROM users');
-		while ($datas = $req->fetch(PDO::FETCH_ASSOC)) {
+		while ($datas = $req->fetch()) {
 			$users[] = new User($datas);
 		}
 		return $users;
@@ -53,7 +56,7 @@ class UserManager extends DbConnect
 		$req->execute([
 			$user->getLogin()
 		]);
-		$datas = $req->fetch(PDO::FETCH_ASSOC);
+		$datas = $req->fetch();
 		$_SESSION['userId'] = $datas['id'];
 		$userPassword = password_verify($user->getPassword(), $datas['password']);
 		return $userPassword;

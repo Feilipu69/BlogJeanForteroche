@@ -1,13 +1,12 @@
 <?php
-/*
 namespace Bihin\Forteroche\controller;
 use Bihin\Forteroche\model\{
+	DbConnect,
 	EpisodeManager,
 	CommentManager,
-	View,
 	UserManager
 };
-*/
+use Bihin\Forteroche\classes\View;
 
 require_once 'model/DbConnect.php';
 require_once 'model/EpisodeManager.php';

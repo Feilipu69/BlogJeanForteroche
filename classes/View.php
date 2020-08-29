@@ -1,6 +1,6 @@
 <?php
 
-//namespace Bihin\Forteroche\classes;
+namespace Bihin\Forteroche\classes;
 
 class View
 {
