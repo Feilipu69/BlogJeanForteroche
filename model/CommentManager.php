@@ -1,4 +1,10 @@
 <?php
+/*
+namespace Bihin\Forteroche\model;
+use Bihin\Forteroche\model\Comment;
+*/
+
+require_once 'model/Comment.php';
 
 class CommentManager extends DbConnect
 {

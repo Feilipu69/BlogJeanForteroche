@@ -1,5 +1,5 @@
 <h3>Episodes</h3>
-<a href="<?= HOST; ?>addEpisode" class="lead">Ajouter un épisode</a>
+<a href="index.php?get=addEpisode" class="lead">Ajouter un épisode</a>
 <div class="table-responsive">
 	<table class="table table-bordered table-hover mt-3">
 		<thead class="thead-dark">
@@ -17,10 +17,10 @@
 				?>
 				<tr>
 					<td><?=$episode->getChapter(); ?></td>
-					<td><a href="episode?chapter=<?=$episode->getChapter(); ?>"><?=$episode->getTitle(); ?></a></td>
+					<td><a href="index.php?get=episode&chapter=<?=$episode->getChapter(); ?>"><?=$episode->getTitle(); ?></a></td>
 					<td><?= $episode->getCreationDate(); ?></td>
 					<td><?= $episode->getUpdateDate(); ?></td>
-					<td><a href="updateEpisode?chapter=<?= $episode->getChapter(); ?>">Modifier</a> <a href="deleteEpisode?chapter=<?= $episode->getChapter(); ?>" class="text-danger">Supprimer</a></td>
+					<td><a href="index.php?get=updateEpisode&chapter=<?= $episode->getChapter(); ?>">Modifier</a> <a href="index.php?get=deleteEpisode&chapter=<?= $episode->getChapter(); ?>" class="text-danger">Supprimer</a></td>
 				</tr>
 				<?php
 			}
@@ -49,7 +49,7 @@
 				<td><?= $rudeComment->getEpisodeId(); ?></td>
 				<td><?= $rudeComment->getComment(); ?></td>
 				<td><?= $rudeComment->getRudeComment(); ?></td>
-				<td><a href="<?= HOST; ?>deleteComment?id=<?= $rudeComment->getId(); ?>" class="text-danger">Supprimer</a></td>
+				<td><a href="index.php?get=deleteComment&id=<?= $rudeComment->getId(); ?>" class="text-danger">Supprimer</a></td>
 				<?php
 			}
 			?>

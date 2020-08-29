@@ -1,4 +1,10 @@
 <?php
+/*
+namespace Bihin\Forteroche\model;
+use Bihin\Forteroche\model\User;
+*/
+
+require_once 'model/User.php';
 
 class UserManager extends DbConnect
 {
@@ -17,8 +23,9 @@ class UserManager extends DbConnect
 		$req->execute([
 			$_SESSION['login']
 		]);
-		$datas =  $req->fetch(PDO::FETCH_ASSOC);
-		$userDatas = new User($datas);
+		while($datas =  $req->fetch(PDO::FETCH_ASSOC)){
+			$userDatas = new User($datas);
+		};
 		return $userDatas;
 	}
 

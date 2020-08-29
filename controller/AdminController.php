@@ -1,4 +1,16 @@
 <?php
+/*
+namespace Bihin\Forteroche\controller;
+use Bihin\Forteroche\model\{
+	EpisodeManager,
+	CommentManager,
+	View,
+};
+*/
+
+require_once 'model/EpisodeManager.php';
+require_once 'model/CommentManager.php';
+require_once 'classes/View.php';
 
 class AdminController extends DbConnect
 {

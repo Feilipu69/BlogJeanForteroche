@@ -1,4 +1,19 @@
 <?php
+/*
+namespace Bihin\Forteroche\controller;
+use Bihin\Forteroche\model\{
+	EpisodeManager,
+	CommentManager,
+	View,
+	UserManager
+};
+*/
+
+require_once 'model/DbConnect.php';
+require_once 'model/EpisodeManager.php';
+require_once 'model/CommentManager.php';
+require_once 'model/UserManager.php';
+require_once 'classes/View.php';
 
 class FrontController extends DbConnect
 {
@@ -52,7 +67,7 @@ class FrontController extends DbConnect
 					$_SESSION['login'] = $post['login'];
 					$roleId = $manager->getUserDatas();
 					$_SESSION['roleId'] = $roleId->getName();
-					header('Location:home');
+					header('Location:index.php?get=home');
 				} else {
 					echo 'Données incorrectes';
 				}

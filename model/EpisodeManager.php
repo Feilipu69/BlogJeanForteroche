@@ -1,4 +1,10 @@
 <?php
+/*
+namespace Bihin\Forteroche\model;
+use Bihin\Forteroche\model\Episode;
+*/
+
+require_once 'model/Episode.php';
 
 class EpisodeManager extends DbConnect
 {

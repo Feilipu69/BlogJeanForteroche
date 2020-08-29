@@ -23,34 +23,34 @@
 								if (!isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item active">
-										<a class="nav-link" href="<?= HOST; ?>home">Accueil</a>
+										<a class="nav-link" href="index.php?get=home">Accueil</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="<?= HOST; ?>connection">Compte</a>
+										<a class="nav-link" href="index.php?get=connection">Compte</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="<?= HOST; ?>register">Inscription</a>
+										<a class="nav-link" href="index.php?get=register">Inscription</a>
 									</li>
 									<?php
 								} elseif (isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="<?= HOST; ?>home">Accueil</a>
+										<a class="nav-link" href="index.php?get=home">Accueil</a>
 									</li>
 									<?php
 									if (isset($_SESSION['roleId']) && $_SESSION['roleId'] === 'admin') {
 										?>
 										<li class="nav-item">
-											<a class="nav-link" href="<?= HOST; ?>administration">Administration</a>
+											<a class="nav-link" href="index.php?get=administration">Administration</a>
 										</li>
 										<?php
 									}
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="<?= HOST; ?>updateDatas">Modifier vos données</a>
+										<a class="nav-link" href="index.php?get=updateDatas">Modifier vos données</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="<?= HOST; ?>disconnection">Déconnexion</a>
+										<a class="nav-link" href="index.php?get=disconnection">Déconnexion</a>
 									</li>
 									<?php
 								}
