@@ -5,8 +5,6 @@ namespace Bihin\Forteroche\src\DAO;
 use Bihin\Forteroche\src\DAO\DbConnect;
 use Bihin\Forteroche\src\model\User;
 
-require_once 'src/model/User.php';
-
 class UserManager extends DbConnect
 {
 	public function register($post){

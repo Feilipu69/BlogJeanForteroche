@@ -4,8 +4,6 @@ namespace Bihin\Forteroche\src\DAO;
 use Bihin\Forteroche\src\DAO\DbConnect;
 use Bihin\Forteroche\src\model\Comment;
 
-require_once 'src/model/Comment.php';
-
 class CommentManager extends DbConnect
 {
 	public function getComments($chapter){

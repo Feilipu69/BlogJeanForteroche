@@ -5,9 +5,6 @@ use Bihin\Forteroche\src\controller\{
 	AdminController
 };
 
-require_once 'src/controller/FrontController.php';
-require_once 'src/controller/AdminController.php';
-
 class Router
 {
 	private $frontController;

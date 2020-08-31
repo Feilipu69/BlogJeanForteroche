@@ -8,9 +8,6 @@ use Bihin\Forteroche\src\DAO\{
 };
 use Bihin\Forteroche\utils\View;
 
-require_once 'src/DAO/EpisodeManager.php';
-require_once 'src/DAO/CommentManager.php';
-require_once 'src/DAO/UserManager.php';
 require_once 'utils/View.php';
 
 class AdminController extends DbConnect

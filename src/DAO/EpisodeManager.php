@@ -4,8 +4,6 @@ namespace Bihin\Forteroche\src\DAO;
 use Bihin\Forteroche\src\DAO\DbConnect;
 use Bihin\Forteroche\src\model\Episode;
 
-require_once 'src/model/Episode.php';
-
 class EpisodeManager extends DbConnect
 {
 	public function getEpisodes(){
