@@ -1,0 +1,17 @@
+{
+    "name": "bihin/forteroche",
+    "description": "Blog du nouveau roman de Jean Forteroche : Billet simple pour l'Alaska",
+    "authors": [
+        {
+            "name": "Feilipu",
+            "email": "Turgon.Telrunya@protonmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bihin\\Forteroche\\classes\\": "classes/",
+            "Bihin\\Forteroche\\src\\": "src/"
+        }
+    },
+    "require": {}
+}
