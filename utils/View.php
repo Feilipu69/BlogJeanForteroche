@@ -1,6 +1,6 @@
 <?php
 
-namespace Bihin\Forteroche\classes;
+namespace Bihin\Forteroche\utils;
 
 class View
 {
@@ -14,10 +14,8 @@ class View
 		extract($params);
 		$file = $this->file;
 		ob_start();
-		//require_once VIEW . $file . '.php';
 		require_once 'view/' . $file . '.php';
 		$content = ob_get_clean();
-		//require_once VIEW . 'gabarit.php';
 		require_once 'view/gabarit.php';
 	}
 }

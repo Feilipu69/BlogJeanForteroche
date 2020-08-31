@@ -1,6 +1,6 @@
 <?php
 
-namespace Bihin\Forteroche\model;
+namespace Bihin\Forteroche\src\DAO;
 use PDO;
 use Exception;
 

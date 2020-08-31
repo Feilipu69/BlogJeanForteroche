@@ -1,12 +1,12 @@
 <?php
 namespace Bihin\Forteroche\classes;
-use Bihin\Forteroche\controller\{
+use Bihin\Forteroche\src\controller\{
 	FrontController,
 	AdminController
 };
 
-require_once 'controller/FrontController.php';
-require_once 'controller/AdminController.php';
+require_once 'src/controller/FrontController.php';
+require_once 'src/controller/AdminController.php';
 
 class Router
 {

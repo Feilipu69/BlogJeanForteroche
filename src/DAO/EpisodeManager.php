@@ -1,12 +1,10 @@
 <?php
-namespace Bihin\Forteroche\model;
+namespace Bihin\Forteroche\src\DAO;
 
-use Bihin\Forteroche\model\{
-	DbConnect,
-	Episode
-};
+use Bihin\Forteroche\src\DAO\DbConnect;
+use Bihin\Forteroche\src\model\Episode;
 
-require_once 'model/Episode.php';
+require_once 'src/model/Episode.php';
 
 class EpisodeManager extends DbConnect
 {

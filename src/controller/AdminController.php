@@ -1,21 +1,21 @@
 <?php
-namespace Bihin\Forteroche\controller;
-use Bihin\Forteroche\model\{
+namespace Bihin\Forteroche\src\controller;
+use Bihin\Forteroche\src\DAO\{
 	DbConnect,
 	EpisodeManager,
 	CommentManager
 };
-use Bihin\Forteroche\classes\View;
+use Bihin\Forteroche\utils\View;
 
-require_once 'model/EpisodeManager.php';
-require_once 'model/CommentManager.php';
-require_once 'classes/View.php';
+require_once 'src/DAO/EpisodeManager.php';
+require_once 'src/DAO/CommentManager.php';
+require_once 'utils/View.php';
 
 class AdminController extends DbConnect
 {
 	public function checkLogin(){
 		if ($_SESSION['login'] !== 'Jean') {
-			header('Location:home');
+			header('Location:index.php?get=home');
 		} else {
 			return true;
 		}
@@ -43,7 +43,7 @@ class AdminController extends DbConnect
 			if (isset($post['addEpisode'])) {
 				if (!empty($post['chapter']) && !empty($post['title']) && !empty($post['content'])) {
 					$newEpisode = $episode->addEpisode($post);
-					header('Location:home');
+					header('Location:index.php?get=home');
 				}
 			}
 

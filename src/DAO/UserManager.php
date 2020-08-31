@@ -1,13 +1,11 @@
 <?php
 
-namespace Bihin\Forteroche\model;
+namespace Bihin\Forteroche\src\DAO;
 
-use Bihin\Forteroche\model\{
-	DbConnect,
-	User
-};
+use Bihin\Forteroche\src\DAO\DbConnect;
+use Bihin\Forteroche\src\model\User;
 
-require_once 'model/User.php';
+require_once 'src/model/User.php';
 
 class UserManager extends DbConnect
 {

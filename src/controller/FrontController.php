@@ -1,18 +1,18 @@
 <?php
-namespace Bihin\Forteroche\controller;
-use Bihin\Forteroche\model\{
+namespace Bihin\Forteroche\src\controller;
+use Bihin\Forteroche\src\DAO\{
 	DbConnect,
 	EpisodeManager,
 	CommentManager,
 	UserManager
 };
-use Bihin\Forteroche\classes\View;
+use Bihin\Forteroche\utils\View;
 
-require_once 'model/DbConnect.php';
-require_once 'model/EpisodeManager.php';
-require_once 'model/CommentManager.php';
-require_once 'model/UserManager.php';
-require_once 'classes/View.php';
+require_once 'src/DAO/DbConnect.php';
+require_once 'src/DAO/EpisodeManager.php';
+require_once 'src/DAO/CommentManager.php';
+require_once 'src/DAO/UserManager.php';
+require_once 'utils/View.php';
 
 class FrontController extends DbConnect
 {
@@ -47,7 +47,7 @@ class FrontController extends DbConnect
 			if (!empty($post['author']) && !empty($post['comment'])) {
 				$manager = new CommentManager();
 				$comment = $manager->addComment($post, $chapter);
-				header('Location:episode?chapter=' . $chapter);
+				header('Location:index.php?get=episode&chapter=' . $chapter);
 			}
 		}
 	}
@@ -55,7 +55,7 @@ class FrontController extends DbConnect
 	public function rudeComment($id){
 		$manager = new CommentManager();
 		$rudeComment = $manager->rudeComment($id);
-		header('Location:home');
+		header('Location:index.php?get=home');
 	}
 
 	public function connection($post){
@@ -89,7 +89,7 @@ class FrontController extends DbConnect
 					$_SESSION['login'] = $post['login'];
 					$userId = $manager->getUserDatas();
 					$_SESSION['userId'] = $userId->getId();
-					header('Location:home');
+					header('Location:index.php?get=home');
 				}
 			}
 
@@ -110,7 +110,7 @@ class FrontController extends DbConnect
 				else {
 					$manager->updateDatas($post);
 					$_SESSION['login'] = $post['login'];
-					header('Location:home');
+					header('Location:index.php?get=home');
 				}
 			}
 		}
@@ -125,7 +125,7 @@ class FrontController extends DbConnect
 		if (isset($_SESSION['login'])) {
 			unset($_SESSION['login']);
 			session_destroy();
-			header('Location:home');
+			header('Location:index.php?get=home');
 		}
 	}
 
@@ -133,6 +133,6 @@ class FrontController extends DbConnect
 		$manager = new UserManager();
 		$manager->deleteCount($login);
 		unset($_SESSION['login'], $_SESSION['userId']);
-		header('Location:home');
+		header('Location:index.php?get=home');
 	}
 }
