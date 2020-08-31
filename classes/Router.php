@@ -62,6 +62,9 @@ class Router
 			elseif ($_GET['get'] === 'deleteComment') {
 				$this->adminController->deleteComment($_GET['id']);
 			}
+			elseif ($_GET['get'] === 'deleteUser') {
+				$this->adminController->deleteUser($_GET['id']);
+			}
 		}
 		else {
 			$this->frontController->home();

@@ -32,27 +32,52 @@
 <div class="table-responsive">
 	<table class="table table-bordered table-hover">
 		<thead class="thead-dark">
-		<tr>
-			<th>Auteur</th>
-			<th>Chapitre</th>
-			<th>Commentaire</th>
-			<th>Signalements</th>
-			<th>Action</th>
-		</tr>
+			<tr>
+				<th>Auteur</th>
+				<th>Chapitre</th>
+				<th>Commentaire</th>
+				<th>Signalements</th>
+				<th>Action</th>
+			</tr>
 		</thead>
 		<tbody>
-		<?php
-		foreach ($rudeComments as $rudeComment) {
-			?>
-			<tr>
-				<td><?= $rudeComment->getAuthor(); ?></td>
-				<td><?= $rudeComment->getEpisodeId(); ?></td>
-				<td><?= $rudeComment->getComment(); ?></td>
-				<td><?= $rudeComment->getRudeComment(); ?></td>
-				<td><a href="index.php?get=deleteComment&id=<?= $rudeComment->getId(); ?>" class="text-danger">Supprimer</a></td>
+			<?php
+			foreach ($rudeComments as $rudeComment) {
+				?>
+				<tr>
+					<td><?= $rudeComment->getAuthor(); ?></td>
+					<td><?= $rudeComment->getEpisodeId(); ?></td>
+					<td><?= $rudeComment->getComment(); ?></td>
+					<td><?= $rudeComment->getRudeComment(); ?></td>
+					<td><a href="index.php?get=deleteComment&id=<?= $rudeComment->getId(); ?>" class="text-danger">Supprimer</a></td>
+				</tr>
 				<?php
 			}
 			?>
-			</tbody>
-		</table>
-	</div>
+		</tbody>
+	</table>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th>Login</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			foreach ($users as $user) {
+				?>
+				<tr>
+					<td><?= $user->getLogin(); ?></td>
+					<td><?= $user->getEmail(); ?></td>
+					<td><a href="index.php?get=deleteUser&id=<?= $user->getId(); ?>" class="text-danger">Supprimer</a></td>
+				</tr>
+				<?php
+			}
+			?>
+		</tbody>
+	</table>
+</div>

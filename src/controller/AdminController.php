@@ -3,12 +3,14 @@ namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
 	DbConnect,
 	EpisodeManager,
-	CommentManager
+	CommentManager,
+	UserManager
 };
 use Bihin\Forteroche\utils\View;
 
 require_once 'src/DAO/EpisodeManager.php';
 require_once 'src/DAO/CommentManager.php';
+require_once 'src/DAO/UserManager.php';
 require_once 'utils/View.php';
 
 class AdminController extends DbConnect
@@ -27,10 +29,13 @@ class AdminController extends DbConnect
 			$episodes = $episode->getEpisodes();
 			$comments = new CommentManager();
 			$rudeComments = $comments->getRudeComments();
+			$user = new UserManager();
+			$users = $user->getUsers();
 			$myView = new View('administration');
 			$myView->render([
 				'episodes' => $episodes,
-				'rudeComments' => $rudeComments
+				'rudeComments' => $rudeComments,
+				'users' => $users
 			]);
 		}
 	}
@@ -81,6 +86,14 @@ class AdminController extends DbConnect
 		if ($this->checkLogin()) {
 			$comment = new CommentManager();
 			$deleteComment = $comment->deleteComment($id);
+		}
+	}
+
+	public function deleteUser($id){
+		if ($this->checkLogin()) {
+			$user = new UserManager();
+			$deleteUser = $user->deleteUser($id);
+			header('Location:index.php?get=administration');
 		}
 	}
 }

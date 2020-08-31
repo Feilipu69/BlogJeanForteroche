@@ -77,4 +77,11 @@ class UserManager extends DbConnect
 			$login
 		]);
 	}
+
+	public function deleteUSer($id){
+		$req = $this->db->prepare('DELETE FROM users WHERE id = ?');
+		$req->execute([
+			$id
+		]);
+	}
 }

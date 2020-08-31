@@ -1,4 +1,4 @@
-<form method="post" action=index.php?get=register">
+<form method="post" action="index.php?get=register">
 	<label for="login">Login : </label>
 	<br>
 	<input type="text" name="login" id="login" required/>

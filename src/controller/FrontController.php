@@ -92,7 +92,6 @@ class FrontController extends DbConnect
 					header('Location:index.php?get=home');
 				}
 			}
-
 		}
 
 		$myView = new View('register');
