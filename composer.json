@@ -10,7 +10,8 @@
     "autoload": {
         "psr-4": {
             "Bihin\\Forteroche\\classes\\": "classes/",
-            "Bihin\\Forteroche\\src\\": "src/"
+            "Bihin\\Forteroche\\src\\": "src",
+            "Bihin\\Forteroche\\utils\\": "utils"
         }
     },
     "require": {}

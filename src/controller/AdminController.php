@@ -8,8 +8,6 @@ use Bihin\Forteroche\src\DAO\{
 };
 use Bihin\Forteroche\utils\View;
 
-require_once 'utils/View.php';
-
 class AdminController extends DbConnect
 {
 	public function checkLogin(){
