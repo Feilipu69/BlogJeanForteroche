@@ -39,8 +39,12 @@ class CommentManager extends DbConnect
 		]);
 	}
 
-	public function rudeComment($id){
+	public function rudeCommentPlus($id){
 		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment + 1 WHERE id = ' . $id);
+	}
+
+	public function rudeCommentLess($id){
+		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment - 1 WHERE id = ' . $id);
 	}
 
 	public function getRudeComments(){

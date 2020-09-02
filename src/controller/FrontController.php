@@ -48,7 +48,13 @@ class FrontController extends DbConnect
 
 	public function rudeComment($id){
 		$manager = new CommentManager();
-		$rudeComment = $manager->rudeComment($id);
+		if (!$_SESSION['rudeComment']) {
+			$_SESSION['rudeComment'] = 1;
+			$rudeComment = $manager->rudeCommentPlus($id);
+		} else {
+			$rudeComment = $manager->rudeCommentLess($id);
+			$_SESSION['rudeComment'] = 0;
+		}
 		$chapter = $manager->getEpisodeIdById($id);
 		header('Location:index.php?get=episode&chapter=' . $chapter->getEpisodeId());
 	}
@@ -116,8 +122,9 @@ class FrontController extends DbConnect
 	}
 
 	public function disconnection(){
-		if (isset($_SESSION['login'])) {
-			unset($_SESSION['login']);
+		if (isset($_SESSION['login']) && isset($_SESSION['rudeComment'])) {
+			 unset($_SESSION['login']);
+			 unset($_SESSION['rudeComment']);
 			session_destroy();
 			header('Location:index.php?get=home');
 		}
