@@ -49,7 +49,8 @@ class FrontController extends DbConnect
 	public function rudeComment($id){
 		$manager = new CommentManager();
 		$rudeComment = $manager->rudeComment($id);
-		header('Location:index.php?get=home');
+		$chapter = $manager->getEpisodeIdById($id);
+		header('Location:index.php?get=episode&chapter=' . $chapter->getEpisodeId());
 	}
 
 	public function connection($post){

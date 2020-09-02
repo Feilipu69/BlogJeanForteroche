@@ -22,6 +22,13 @@ class CommentManager extends DbConnect
 		return $comment;
 	}
 
+	public function getEpisodeIdById($id){
+		$req = $this->db->query('SELECT episodeId FROM comments WHERE id = ' . $id);
+		$datas = $req->fetch();
+		$data = new Comment($datas);
+		return $data;
+	}
+
 	public function addComment($post, $chapter){
 		$req = $this->db->prepare('INSERT INTO comments(author, episodeId, comment, dateComment) VALUES(:author, :episodeId, :comment, NOW())');
 		$newComment = new Comment($post);
