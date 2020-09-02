@@ -36,7 +36,7 @@
 	if (isset($comments) && isset($_SESSION['login'])) {
 		?>
 		<div class="mt-3">
-			<h3 class="bg-dark text-white text-center">Commentaires</h3>
+			<h3 id="commentaires" class="bg-dark text-white text-center">Commentaires</h3>
 			<p class="lead mt-3 font-weight-bold text-info">Ajouter un commentaire</p>
 			<div>
 				<form method="post" action="index.php?get=addComment&chapter=<?= strip_tags($episode->getChapter()); ?>">
@@ -64,7 +64,7 @@
 							<p><em>Ajouté le : <?= strip_tags($comment->getDateComment()); ?></em></p>
 							<p><?= strip_tags($comment->getComment()); ?></p>
 							<p><em>Signalement(s) du commentaire : </em><?= strip_tags($comment->getRudeComment()); ?></p>
-							<p><a href="index.php?get=rudeComment&id=<?=strip_tags($comment->getId()); ?>"><input type="button" value="Signaler le commentaire" class="btn btn-dark" /></a></p>
+							<p><a href="index.php?get=rudeComment&id=<?=strip_tags($comment->getId()); ?>#commentaires"><input type="button" value="Signaler le commentaire" class="btn btn-dark" /></a></p>
 						</td>
 					</tr>
 					<?php
