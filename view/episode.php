@@ -64,7 +64,7 @@
 							<p><em>Ajouté le : <?= strip_tags($comment->getDateComment()); ?></em></p>
 							<p><?= strip_tags($comment->getComment()); ?></p>
 							<p><em>Signalement(s) du commentaire : </em><?= strip_tags($comment->getRudeComment()); ?></p>
-							<p><a href="index.php?get=rudeComment&id=<?=strip_tags($comment->getId()); ?>#commentaires"><input type="button" value="Signaler le commentaire" class="btn btn-dark" /></a></p>
+							<p><a href="index.php?get=rudeComment&id=<?=strip_tags($comment->getId()); ?>#commentaires"><input type="button" value="Signaler le commentaire" class="btn btn-outline-secondary" /></a></p>
 						</td>
 					</tr>
 					<?php
