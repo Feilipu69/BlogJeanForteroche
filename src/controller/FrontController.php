@@ -122,9 +122,8 @@ class FrontController extends DbConnect
 	}
 
 	public function disconnection(){
-		if (isset($_SESSION['login']) && isset($_SESSION['rudeComment'])) {
+		if (isset($_SESSION['login'])) {
 			 unset($_SESSION['login']);
-			 unset($_SESSION['rudeComment']);
 			session_destroy();
 			header('Location:index.php?get=home');
 		}
