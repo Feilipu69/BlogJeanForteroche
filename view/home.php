@@ -5,7 +5,7 @@ if (!isset($_SESSION['login'])) {
 		<p class="h3">Bienvenue chères lectrices et chers lecteurs.</p>
 		<p>Avec ce nouveau roman, j'ai voulu vous donner la possibilité de participer à sa rédaction via vos avis et commentaires.
 		<br>
-		Si l'aventure vous tente, inscrivez vous en cliquant dans le menu.
+		Si l'aventure vous tente, inscrivez-vous en cliquant dans le menu.
 		<br>
 		Merci à vous.
 		<br>

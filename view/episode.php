@@ -36,7 +36,7 @@
 	if (isset($comments) && isset($_SESSION['login'])) {
 		?>
 		<div class="mt-3">
-			<h3 id="commentaires" class="bg-dark text-white text-center">Commentaires</h3>
+			<h3 class="bg-dark text-white text-center">Commentaires</h3>
 			<p class="lead mt-3 font-weight-bold text-info">Ajouter un commentaire</p>
 			<div>
 				<form method="post" action="index.php?get=addComment&chapter=<?= strip_tags($episode->getChapter()); ?>">
@@ -58,7 +58,7 @@
 				<?php
 				foreach ($comments as $comment) {
 					?>
-					<tr>
+					<tr id="commentaires">
 						<td>
 							<p><strong><?= strip_tags($comment->getAuthor()); ?></strong> : </p>
 							<p><em>Ajouté le : <?= strip_tags($comment->getDateComment()); ?></em></p>
