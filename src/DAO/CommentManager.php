@@ -8,25 +8,28 @@ class CommentManager extends DbConnect
 {
 	public function getComments($chapter){
 		$comments = [];
-		$req = $this->db->query('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ' . $chapter);
-		while ($datas = $req->fetch()) {
-			$comments[] = new Comment($datas);
+		$req = $this->db->prepare('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
+		$req->execute([
+			$chapter
+		]);
+		while ($data = $req->fetch()) {
+			$comments[] = new Comment($data);
 		}
 		return $comments; 
 	}
 
 	public function getComment($episodeId){
 		$req = $this->db->query('SELECT * FROM comments WHERE episodeId = ' . $episodeId);
-		$datas = $req->fetch();
-		$comment = new Comment($datas);
+		$data = $req->fetch();
+		$comment = new Comment($data);
 		return $comment;
 	}
 
 	public function getEpisodeIdById($id){
 		$req = $this->db->query('SELECT episodeId FROM comments WHERE id = ' . $id);
-		$datas = $req->fetch();
-		$data = new Comment($datas);
-		return $data;
+		$data = $req->fetch();
+		$commentData = new Comment($data);
+		return $commentData;
 	}
 
 	public function addComment($post, $chapter){
@@ -50,8 +53,8 @@ class CommentManager extends DbConnect
 	public function getRudeComments(){
 		$rudeComments = [];
 		$req = $this->db->query('SELECT * FROM comments WHERE rudeComment > 0');
-		while ($datas = $req->fetch()) {
-			$rudeComments[] = new Comment($datas);
+		while ($data = $req->fetch()) {
+			$rudeComments[] = new Comment($data);
 		}
 		return  $rudeComments;
 	}

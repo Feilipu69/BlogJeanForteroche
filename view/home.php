@@ -2,7 +2,7 @@
 if (!isset($_SESSION['login'])) {
 	?>
 	<div class="jumbotron">
-		<p class="h3">Bienvenue chères lectrices et chers lecteurs.</p>
+		<p class="h3 text-primary">Bienvenue chères lectrices et chers lecteurs.</p>
 		<p>Avec ce nouveau roman, j'ai voulu vous donner la possibilité de participer à sa rédaction via vos avis et commentaires.
 		<br>
 		Si l'aventure vous tente, inscrivez-vous en cliquant dans le menu.

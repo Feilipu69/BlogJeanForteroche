@@ -65,7 +65,7 @@ class FrontController extends DbConnect
 				$manager = new UserManager();
 				if ($manager->checkPassword($post)) {
 					$_SESSION['login'] = $post['login'];
-					$roleId = $manager->getUserDatas();
+					$roleId = $manager->getUserData();
 					$_SESSION['roleId'] = $roleId->getName();
 					header('Location:index.php?get=home');
 				} else {
@@ -88,7 +88,7 @@ class FrontController extends DbConnect
 				else {
 					$manager->register($post);
 					$_SESSION['login'] = $post['login'];
-					$userId = $manager->getUserDatas();
+					$userId = $manager->getUserData();
 					$_SESSION['userId'] = $userId->getId();
 					header('Location:index.php?get=home');
 				}
@@ -99,25 +99,25 @@ class FrontController extends DbConnect
 		$myView->render([]);
 	}
 
-	public function updateDatas($post){
+	public function updateData($post){
 		$manager= new UserManager();
-		$userDatas = $manager->getUserDatas();
-		if (isset($post['updateDatas'])) {
+		$userData = $manager->getUserData();
+		if (isset($post['updateData'])) {
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
 				if ($manager->checkUser($post)) {
 					echo 'Ce login existe déjà.';
 				}
 				else {
-					$manager->updateDatas($post);
+					$manager->updateData($post);
 					$_SESSION['login'] = $post['login'];
 					header('Location:index.php?get=home');
 				}
 			}
 		}
 
-		$myView = new View('updateDatas');
+		$myView = new View('updateData');
 		$myView->render([
-			'userDatas' => $userDatas
+			'userData' => $userData
 		]);
 	}
 

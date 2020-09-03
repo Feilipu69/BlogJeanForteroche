@@ -17,21 +17,21 @@ class UserManager extends DbConnect
 		]);
 	}
 
-	public function getUserDatas(){
+	public function getUserData(){
 		$req = $this->db->prepare('SELECT users.*, role.* FROM role INNER JOIN users ON users.roleId = role.id WHERE login = ?');
 		$req->execute([
 			$_SESSION['login']
 		]);
-		while($datas =  $req->fetch()){
-			$userDatas = new User($datas);
+		while($data =  $req->fetch()){
+			$userData = new User($data);
 		};
-		return $userDatas;
+		return $userData;
 	}
 
 	public function getUSers(){
 		$req = $this->db->query('SELECT * FROM users');
-		while ($datas = $req->fetch()) {
-			$users[] = new User($datas);
+		while ($data = $req->fetch()) {
+			$users[] = new User($data);
 		}
 		return $users;
 	}
@@ -52,13 +52,13 @@ class UserManager extends DbConnect
 		$req->execute([
 			$user->getLogin()
 		]);
-		$datas = $req->fetch();
-		$_SESSION['userId'] = $datas['id'];
-		$userPassword = password_verify($user->getPassword(), $datas['password']);
+		$data = $req->fetch();
+		$_SESSION['userId'] = $data['id'];
+		$userPassword = password_verify($user->getPassword(), $data['password']);
 		return $userPassword;
 	}
 
-	public function updateDatas($post){
+	public function updateData($post){
 		$user = new User($post);
 		$req = $this->db->prepare('UPDATE users SET login = :login, password = :password, email = :email WHERE id = :id');
 		$req->execute([

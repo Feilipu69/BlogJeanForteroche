@@ -35,8 +35,8 @@ class Router
 			elseif ($_GET['get'] === 'register') {
 				$this->frontController->register($_POST);
 			}
-			elseif ($_GET['get'] === 'updateDatas') {
-				$this->frontController->updateDatas($_POST);
+			elseif ($_GET['get'] === 'updateData') {
+				$this->frontController->updateData($_POST);
 			}
 			elseif ($_GET['get'] === 'disconnection') {
 				$this->frontController->disconnection();

@@ -11,7 +11,7 @@
 		<div class="container">
 			<header>
 				<div class="bg-dark">
-					<h1 class="text-white text-center">Billet simple pour l'Alaska</h1>
+					<h1 class="text-center"><a href="index.php?get=home" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
 					<h3 class="text-white text-center">Jean Forteroche</h3>
 					<nav class="navbar navbar-expand-md navbar-dark text-center">
 						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -47,7 +47,7 @@
 									}
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=updateDatas">Modifier vos données</a>
+										<a class="nav-link" href="index.php?get=updateData">Modifier vos données</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="index.php?get=disconnection">Déconnexion</a>

@@ -8,16 +8,16 @@ class EpisodeManager extends DbConnect
 {
 	public function getEpisodes(){
 		$req = $this->db->query('SELECT id, chapter, title, content, DATE_FORMAT(creationDate, "%d/%m/%Y à %H:%i:%s") AS creationDate, DATE_FORMAT(updateDate, "%d/%m/%Y à %H:%i:%s") AS updateDate FROM episodes');
-		while ($datas = $req->fetch()) {
-			$episodes[] = new Episode($datas);
+		while ($data = $req->fetch()) {
+			$episodes[] = new Episode($data);
 		}
 		return $episodes;
 	}
 
 	public function getEpisode($chapter){
 		$req = $this->db->query('SELECT * FROM episodes WHERE chapter = ' . $chapter);
-		$datas = $req->fetch();
-		$episode = new Episode($datas);
+		$data = $req->fetch();
+		$episode = new Episode($data);
 		return $episode;
 	}
 
