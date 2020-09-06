@@ -18,7 +18,7 @@ class FrontController extends DbConnect
 		$myView->render(['episodes' => $episodes]);
 	}
 
-	public function getChapter($chapter){
+	public function getChapter(int $chapter){
 		$manager = new EpisodeManager();
 		$episodes = $manager->getEpisodes();
 		$episode = $manager->getEpisode($chapter); 
@@ -100,30 +100,34 @@ class FrontController extends DbConnect
 	}
 
 	public function updateData($post){
-		$manager= new UserManager();
-		$userData = $manager->getUserData();
-		if (isset($post['updateData'])) {
-			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
-				if ($manager->checkUser($post)) {
-					echo 'Ce login existe déjà.';
-				}
-				else {
-					$manager->updateData($post);
-					$_SESSION['login'] = $post['login'];
-					header('Location:index.php?get=home');
+		if (isset($_SESSION['login'])) {
+			$manager= new UserManager();
+			$userData = $manager->getUserData();
+			if (isset($post['updateData'])) {
+				if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
+					if ($manager->checkUser($post)) {
+						echo 'Ce login existe déjà.';
+					}
+					else {
+						$manager->updateData($post);
+						$_SESSION['login'] = $post['login'];
+						header('Location:index.php?get=home');
+					}
 				}
 			}
-		}
 
-		$myView = new View('updateData');
-		$myView->render([
-			'userData' => $userData
-		]);
+			$myView = new View('updateData');
+			$myView->render([
+				'userData' => $userData
+			]);
+		} else {
+			header('Location:index.php?get=home');
+		}
 	}
 
 	public function disconnection(){
 		if (isset($_SESSION['login'])) {
-			 unset($_SESSION['login']);
+			unset($_SESSION['login']);
 			session_destroy();
 			header('Location:index.php?get=home');
 		}

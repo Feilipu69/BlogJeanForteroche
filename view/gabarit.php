@@ -11,7 +11,7 @@
 		<div class="container">
 			<header>
 				<div class="bg-dark">
-					<h1 class="text-center"><a href="index.php?get=home" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
+					<h1 class="text-center"><a href="home" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
 					<h3 class="text-white text-center">Jean Forteroche</h3>
 					<nav class="navbar navbar-expand-md navbar-dark text-center">
 						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -23,34 +23,34 @@
 								if (!isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item active">
-										<a class="nav-link" href="index.php?get=home">Accueil</a>
+										<a class="nav-link" href="home">Accueil</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=connection">Compte</a>
+										<a class="nav-link" href="connection">Compte</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=register">Inscription</a>
+										<a class="nav-link" href="register">Inscription</a>
 									</li>
 									<?php
 								} elseif (isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=home">Accueil</a>
+										<a class="nav-link" href="home">Accueil</a>
 									</li>
 									<?php
 									if (isset($_SESSION['roleId']) && $_SESSION['roleId'] === 'admin') {
 										?>
 										<li class="nav-item">
-											<a class="nav-link" href="index.php?get=administration">Administration</a>
+											<a class="nav-link" href="administration">Administration</a>
 										</li>
 										<?php
 									}
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=updateData">Modifier vos données</a>
+										<a class="nav-link" href="updateData">Modifier vos données</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=disconnection">Déconnexion</a>
+										<a class="nav-link" href="disconnection">Déconnexion</a>
 									</li>
 									<?php
 								}

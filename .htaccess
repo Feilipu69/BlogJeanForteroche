@@ -1,3 +1,4 @@
-rewriteengine ON
-rewritecond %{REQUEST_FILENAME} !-f
-rewriterule ^(.+)$ index.php?get=$1 [QSA,L]
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php?get=$1 [QSA,L]
+RewriteRule ^(.+)/(.+)/([0-9]+)$ index.php?get=$1&$2=$3 [QSA,L] 
