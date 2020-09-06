@@ -1,5 +1,5 @@
 <h3>Episodes</h3>
-<a href="addEpisode" class="lead">Ajouter un épisode</a>
+<a href="index.php?get=addEpisode" class="lead">Ajouter un épisode</a>
 <div class="table-responsive">
 	<table class="table table-bordered table-hover mt-3">
 		<thead class="thead-dark">
