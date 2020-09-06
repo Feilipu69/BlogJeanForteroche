@@ -17,7 +17,7 @@
 				?>
 				<tr>
 					<td><?=strip_tags($episode->getChapter()); ?></td>
-					<td><a href="index.php?get=episode&chapter=<?=strp_tags($episode->getChapter()); ?>"><?=strip_tags($episode->getTitle()); ?></a></td>
+					<td><a href="index.php?get=episode&chapter=<?=strip_tags($episode->getChapter()); ?>"><?=strip_tags($episode->getTitle()); ?></a></td>
 					<td><?= strip_tags($episode->getCreationDate()); ?></td>
 					<td><?= strip_tags($episode->getUpdateDate()); ?></td>
 					<td><a href="index.php?get=updateEpisode&chapter=<?= strip_tags($episode->getChapter()); ?>">Modifier</a> <a href="index.php?get=deleteEpisode&chapter=<?= strip_tags($episode->getChapter()); ?>" class="text-danger">Supprimer</a></td>

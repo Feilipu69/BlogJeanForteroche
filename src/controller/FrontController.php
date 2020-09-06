@@ -18,7 +18,7 @@ class FrontController extends DbConnect
 		$myView->render(['episodes' => $episodes]);
 	}
 
-	public function getChapter(int $chapter){
+	public function getChapter($chapter){
 		$manager = new EpisodeManager();
 		$episodes = $manager->getEpisodes();
 		$episode = $manager->getEpisode($chapter); 
