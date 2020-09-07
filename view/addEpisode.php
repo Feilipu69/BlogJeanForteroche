@@ -1,4 +1,4 @@
-<form method="post" action="index.php?get=addEpisode">
+<form method="post" action="addEpisode">
 	<label for="chapter">Chapitre : </label>
 	<br>
 	<input type="text" name="chapter" id="chapter" value=<?= $newChapter; ?> />
@@ -10,5 +10,5 @@
 	<textarea name="content" id="form"></textarea>
 	<br>
 	<input type="submit" name="addEpisode" class="btn btn-dark" />
-	<a href="index.php?get=addEpisode"><input type="button" value="Annuler" class="btn btn-dark" /></a>
+	<a href="addEpisode"><input type="button" value="Annuler" class="btn btn-dark" /></a>
 </form>

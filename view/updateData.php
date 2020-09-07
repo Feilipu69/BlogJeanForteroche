@@ -1,4 +1,4 @@
-<form method="post" action="index.php?get=updateData">
+<form method="post" action="updateData">
 	<label for="login">Login : </label>
 	<br>
 	<input type="text" name="login" id="login" value="<?= isset($userData) ? strip_tags($userData->getLogin()) : ''; ?>"required/>

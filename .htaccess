@@ -1,3 +1,10 @@
-RewriteEngine On
+RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^episode-chapter-([0-9]+)$ index.php?get=episode&chapter=$1 [L] 
+RewriteRule ^addComment-chapter-([0-9]+)$ index.php?get=addComment&chapter=$1 [L]
+RewriteRule ^updateEpisode-chapter-([0-9]+)$ index.php?get=updateEpisode&chapter=$1 [L]
+RewriteRule ^deleteEpisode-chapter-([0-9]+)$ index.php?get=deleteEpisode&chapter=$1 [L]
+RewriteRule ^rudeComment-id-([0-9]+)$ index.php?get=rudeComment&id=$1 [L]
+RewriteRule ^deleteComment-id-([0-9]+)$ index.php?get=deleteComment&id=$1 [L]
+RewriteRule ^deleteUser-id-([0-9]+)$ index.php?get=deleteUser&id=$1 [L]
 RewriteRule ^(.+)$ index.php?get=$1 [QSA,L]
