@@ -1,14 +1,13 @@
 <?php
 namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
-	DbConnect,
 	EpisodeManager,
 	CommentManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
 
-class AdminController extends DbConnect
+class AdminController 
 {
 	public function checkLogin(){
 		if ($_SESSION['login'] !== 'Jean') {
@@ -74,6 +73,8 @@ class AdminController extends DbConnect
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
 			$deleteEpisode = $episode->deleteEpisode($chapter);
+			$comments = new CommentManager();
+			$deleteComments = $comments->deleteComments($chapter);
 		}
 	}
 

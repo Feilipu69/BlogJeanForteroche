@@ -1,4 +1,4 @@
-<form method="post" action="updateData">
+<form method="post" action="updateData=">
 	<label for="login">Login : </label>
 	<br>
 	<input type="text" name="login" id="login" value="<?= isset($userData) ? strip_tags($userData->getLogin()) : ''; ?>"required/>
@@ -12,6 +12,6 @@
 	<input type="email" name="email" id="email" value="<?= isset($userData) ? strip_tags($userData->getEmail()) : ''; ?>"required />
 	<br>
 	<input type="submit" name="updateData" value="Modification" class="btn btn-dark mt-4" />
-	<a href="updateData"><input type="button" value="Annuler" class="btn btn-dark mt-4" /></a><br>
-	<a href="deleteCount"><input type="button" value="Suppression du compte" class="btn btn-danger mt-4" /></a>
+	<a href="updateData="><input type="button" value="Annuler" class="btn btn-dark mt-4" /></a><br>
+	<a href="deleteCount="><input type="button" value="Suppression du compte" class="btn btn-danger mt-4" /></a>
 </form>

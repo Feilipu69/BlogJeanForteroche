@@ -58,8 +58,10 @@ class Episode
 		}
 	}
 
-	public function setChapter(string $chapter){
-		$this->chapter = $chapter;
+	public function setChapter(int $chapter){
+		if ($chapter > 0) {
+			$this->chapter = $chapter;
+		}
 	}
 
 	public function setTitle(string $title){

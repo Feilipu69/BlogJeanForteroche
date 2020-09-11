@@ -1,14 +1,13 @@
 <?php
 namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
-	DbConnect,
 	EpisodeManager,
 	CommentManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
 
-class FrontController extends DbConnect
+class FrontController 
 {
 	public function home(){
 		$episode = new EpisodeManager();
@@ -48,13 +47,7 @@ class FrontController extends DbConnect
 
 	public function rudeComment($id){
 		$manager = new CommentManager();
-		if (!$_SESSION['rudeComment']) {
-			$_SESSION['rudeComment'] = 1;
-			$rudeComment = $manager->rudeCommentPlus($id);
-		} else {
-			$rudeComment = $manager->rudeCommentLess($id);
-			$_SESSION['rudeComment'] = 0;
-		}
+		$rudeComment = $manager->rudeCommentPlus($id);
 		$chapter = $manager->getEpisodeIdById($id);
 		header('Location:index.php?get=episode&chapter=' . $chapter->getEpisodeId());
 	}
