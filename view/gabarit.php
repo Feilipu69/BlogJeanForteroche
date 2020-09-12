@@ -12,7 +12,7 @@
 		<div class="container">
 			<header>
 				<div class="bg-dark">
-					<h1 class="text-center"><a href="home" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
+					<h1 class="text-center"><a href="accueil" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
 					<h3 class="text-white text-center">Jean Forteroche</h3>
 					<nav class="navbar navbar-expand-md navbar-dark text-center">
 						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -24,19 +24,19 @@
 								if (!isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item active">
-										<a class="nav-link" href="home">Accueil</a>
+										<a class="nav-link" href="accueil">Accueil</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="connection">Compte</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="register">Inscription</a>
+										<a class="nav-link" href="inscription">Inscription</a>
 									</li>
 									<?php
 								} elseif (isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="home">Accueil</a>
+										<a class="nav-link" href="accueil">Accueil</a>
 									</li>
 									<?php
 									if (isset($_SESSION['roleId']) && $_SESSION['roleId'] === 'admin') {
