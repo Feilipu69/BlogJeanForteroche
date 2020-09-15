@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<script src="https://cdn.tiny.cloud/1/wh9z1mfuolvg4lwiul6nr0x5ur1txczi3ksrn9vm58r2itps/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="description" content="Blog du nouveau roman de Jean Forteroche Billet simple pour l'Alaska permettant aux lectrices et lecteurs de participer à l'écriture via leurs avis et commentaires" />
 		<title>Billet simple pour l'Alaska</title>
 	</head>
 	<body>
 		<div class="container">
 			<header>
 				<div class="bg-dark">
-					<h1 class="text-center"><a href="index.php?get=home" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
+					<h1 class="text-center"><a href="accueil" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
 					<h3 class="text-white text-center">Jean Forteroche</h3>
 					<nav class="navbar navbar-expand-md navbar-dark text-center">
 						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -23,34 +24,34 @@
 								if (!isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item active">
-										<a class="nav-link" href="index.php?get=home">Accueil</a>
+										<a class="nav-link" href="accueil">Accueil</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=connection">Compte</a>
+										<a class="nav-link" href="connection">Compte</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=register">Inscription</a>
+										<a class="nav-link" href="inscription">Inscription</a>
 									</li>
 									<?php
 								} elseif (isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=home">Accueil</a>
+										<a class="nav-link" href="accueil">Accueil</a>
 									</li>
 									<?php
 									if (isset($_SESSION['roleId']) && $_SESSION['roleId'] === 'admin') {
 										?>
 										<li class="nav-item">
-											<a class="nav-link" href="index.php?get=administration">Administration</a>
+											<a class="nav-link" href="administration">Administration</a>
 										</li>
 										<?php
 									}
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=updateData">Modifier vos données</a>
+										<a class="nav-link" href="updateData">Modifier vos données</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="index.php?get=disconnection">Déconnexion</a>
+										<a class="nav-link" href="disconnection">Déconnexion</a>
 									</li>
 									<?php
 								}

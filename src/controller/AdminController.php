@@ -1,18 +1,17 @@
 <?php
 namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
-	DbConnect,
 	EpisodeManager,
 	CommentManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
 
-class AdminController extends DbConnect
+class AdminController 
 {
 	public function checkLogin(){
 		if ($_SESSION['login'] !== 'Jean') {
-			header('Location:index.php?get=home');
+			header('Location:accueil');
 		} else {
 			return true;
 		}
@@ -43,7 +42,7 @@ class AdminController extends DbConnect
 			if (isset($post['addEpisode'])) {
 				if (!empty($post['chapter']) && !empty($post['title']) && !empty($post['content'])) {
 					$newEpisode = $episode->addEpisode($post);
-					header('Location:index.php?get=home');
+					header('Location:accueil');
 				}
 			}
 
@@ -61,8 +60,10 @@ class AdminController extends DbConnect
 			if (isset($post['updateEpisode'])) {
 				if (!empty($post['title']) && !empty($post['content'])) {
 					$updateEpisode = $episode->updateEpisode($post, $chapter);
+					header('Location:accueil');
 				}
 			}
+
 			$myView = new View('updateEpisode');
 			$myView->render([
 				'episodeData' => $episodeData
@@ -74,6 +75,9 @@ class AdminController extends DbConnect
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
 			$deleteEpisode = $episode->deleteEpisode($chapter);
+			$comments = new CommentManager();
+			$deleteComments = $comments->deleteComments($chapter);
+			header('Location:administration');
 		}
 	}
 
@@ -88,7 +92,7 @@ class AdminController extends DbConnect
 		if ($this->checkLogin()) {
 			$user = new UserManager();
 			$deleteUser = $user->deleteUser($id);
-			header('Location:index.php?get=administration');
+			header('Location:administration');
 		}
 	}
 }

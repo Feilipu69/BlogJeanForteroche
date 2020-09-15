@@ -1,14 +1,13 @@
 <?php
 namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
-	DbConnect,
 	EpisodeManager,
 	CommentManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
 
-class FrontController extends DbConnect
+class FrontController 
 {
 	public function home(){
 		$episode = new EpisodeManager();
@@ -41,22 +40,16 @@ class FrontController extends DbConnect
 			if (!empty($post['author']) && !empty($post['comment'])) {
 				$manager = new CommentManager();
 				$comment = $manager->addComment($post, $chapter);
-				header('Location:index.php?get=episode&chapter=' . $chapter);
+				header('Location:episode=' . $chapter);
 			}
 		}
 	}
 
 	public function rudeComment($id){
 		$manager = new CommentManager();
-		if (!$_SESSION['rudeComment']) {
-			$_SESSION['rudeComment'] = 1;
-			$rudeComment = $manager->rudeCommentPlus($id);
-		} else {
-			$rudeComment = $manager->rudeCommentLess($id);
-			$_SESSION['rudeComment'] = 0;
-		}
+		$rudeComment = $manager->rudeCommentPlus($id);
 		$chapter = $manager->getEpisodeIdById($id);
-		header('Location:index.php?get=episode&chapter=' . $chapter->getEpisodeId());
+		header('Location:episode=' . $chapter->getEpisodeId());
 	}
 
 	public function connection($post){
@@ -67,7 +60,7 @@ class FrontController extends DbConnect
 					$_SESSION['login'] = $post['login'];
 					$roleId = $manager->getUserData();
 					$_SESSION['roleId'] = $roleId->getName();
-					header('Location:index.php?get=home');
+					header('Location:accueil');
 				} else {
 					echo 'Données incorrectes';
 				}
@@ -90,7 +83,7 @@ class FrontController extends DbConnect
 					$_SESSION['login'] = $post['login'];
 					$userId = $manager->getUserData();
 					$_SESSION['userId'] = $userId->getId();
-					header('Location:index.php?get=home');
+					header('Location:accueil');
 				}
 			}
 		}
@@ -100,32 +93,36 @@ class FrontController extends DbConnect
 	}
 
 	public function updateData($post){
-		$manager= new UserManager();
-		$userData = $manager->getUserData();
-		if (isset($post['updateData'])) {
-			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
-				if ($manager->checkUser($post)) {
-					echo 'Ce login existe déjà.';
-				}
-				else {
-					$manager->updateData($post);
-					$_SESSION['login'] = $post['login'];
-					header('Location:index.php?get=home');
+		if (isset($_SESSION['login'])) {
+			$manager= new UserManager();
+			$userData = $manager->getUserData();
+			if (isset($post['updateData'])) {
+				if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
+					if ($manager->checkUser($post)) {
+						echo 'Ce login existe déjà.';
+					}
+					else {
+						$manager->updateData($post);
+						$_SESSION['login'] = $post['login'];
+						header('Location:accueil');
+					}
 				}
 			}
-		}
 
-		$myView = new View('updateData');
-		$myView->render([
-			'userData' => $userData
-		]);
+			$myView = new View('updateData');
+			$myView->render([
+				'userData' => $userData
+			]);
+		} else {
+			header('Location:accueil');
+		}
 	}
 
 	public function disconnection(){
 		if (isset($_SESSION['login'])) {
-			 unset($_SESSION['login']);
+			unset($_SESSION['login']);
 			session_destroy();
-			header('Location:index.php?get=home');
+			header('Location:accueil');
 		}
 	}
 
@@ -133,6 +130,6 @@ class FrontController extends DbConnect
 		$manager = new UserManager();
 		$manager->deleteCount($login);
 		unset($_SESSION['login'], $_SESSION['userId']);
-		header('Location:index.php?get=home');
+		header('Location:accueil');
 	}
 }

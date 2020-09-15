@@ -1,3 +1,6 @@
-rewriteengine ON
-rewritecond %{REQUEST_FILENAME} !-f
-rewriterule ^(.+)$ index.php?get=$1 [QSA,L]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)=([0-9]+)$ index.php?get=$1&chapter=$2 [L]
+RewriteRule ^(.+)-([0-9]+)$ index.php?get=$1&id=$2 [L]
+RewriteRule ^public/(.+)\.png$ public/$1.png [L]
+RewriteRule ^(.+)$ index.php?get=$1 [QSA,L]

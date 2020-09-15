@@ -39,11 +39,9 @@ class EpisodeManager extends DbConnect
 			':content' => $episode->getContent(),
 			':chapter' => $chapter
 		]);
-		header('Location:home');
 	}
 
 	public function deleteEpisode($chapter){
 		$req = $this->db->exec('DELETE FROM episodes WHERE chapter = ' . $chapter);
-		header('Location:administration');
 	}
 }

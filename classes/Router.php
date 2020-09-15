@@ -17,7 +17,7 @@ class Router
 
 	public function renderController(){
 		if (isset($_GET['get'])) {
-			if ($_GET['get'] === 'home') {
+			if ($_GET['get'] === 'accueil') {
 				$this->frontController->home();
 			}
 			elseif ($_GET['get'] === 'episode') {
@@ -32,7 +32,7 @@ class Router
 			elseif ($_GET['get'] === 'connection') {
 				$this->frontController->connection($_POST);
 			}
-			elseif ($_GET['get'] === 'register') {
+			elseif ($_GET['get'] === 'inscription') {
 				$this->frontController->register($_POST);
 			}
 			elseif ($_GET['get'] === 'updateData') {
