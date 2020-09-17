@@ -40,7 +40,7 @@ class FrontController
 			if (!empty($post['author']) && !empty($post['comment'])) {
 				$manager = new CommentManager();
 				$comment = $manager->addComment($post, $chapter);
-				header('Location:episode=' . $chapter);
+				header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog/episode/' . $chapter);
 			}
 		}
 	}
@@ -49,7 +49,7 @@ class FrontController
 		$manager = new CommentManager();
 		$rudeComment = $manager->rudeCommentPlus($id);
 		$chapter = $manager->getEpisodeIdById($id);
-		header('Location:episode=' . $chapter->getEpisodeId());
+		header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog/episode/' . $chapter->getEpisodeId());
 	}
 
 	public function connection($post){
@@ -60,7 +60,7 @@ class FrontController
 					$_SESSION['login'] = $post['login'];
 					$roleId = $manager->getUserData();
 					$_SESSION['roleId'] = $roleId->getName();
-					header('Location:accueil');
+					header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 				} else {
 					echo 'Données incorrectes';
 				}
@@ -83,7 +83,7 @@ class FrontController
 					$_SESSION['login'] = $post['login'];
 					$userId = $manager->getUserData();
 					$_SESSION['userId'] = $userId->getId();
-					header('Location:accueil');
+					header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 				}
 			}
 		}
@@ -104,7 +104,7 @@ class FrontController
 					else {
 						$manager->updateData($post);
 						$_SESSION['login'] = $post['login'];
-						header('Location:accueil');
+						header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 					}
 				}
 			}
@@ -114,7 +114,7 @@ class FrontController
 				'userData' => $userData
 			]);
 		} else {
-			header('Location:accueil');
+			header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 		}
 	}
 
@@ -122,7 +122,7 @@ class FrontController
 		if (isset($_SESSION['login'])) {
 			unset($_SESSION['login']);
 			session_destroy();
-			header('Location:accueil');
+			header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 		}
 	}
 
@@ -130,6 +130,6 @@ class FrontController
 		$manager = new UserManager();
 		$manager->deleteCount($login);
 		unset($_SESSION['login'], $_SESSION['userId']);
-		header('Location:accueil');
+		header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 	}
 }

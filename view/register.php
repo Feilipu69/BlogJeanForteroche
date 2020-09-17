@@ -1,4 +1,4 @@
-<form method="post" action="inscription">
+<form method="post" action="<?= HOST; ?>/inscription">
 	<label for="login">Login : </label>
 	<br>
 	<input type="text" name="login" id="login" required/>
@@ -12,5 +12,5 @@
 	<input type="email" name="email" id="email" required />
 	<br>
 	<input type="submit" name="register" value="Inscription" class="btn btn-dark mt-4" />
-	<a href="inscription"><input type="button" value="Annuler" class="btn btn-dark mt-4" /></a>
+	<a href="<?= HOST; ?>/inscription"><input type="button" value="Annuler" class="btn btn-dark mt-4" /></a>
 </form>

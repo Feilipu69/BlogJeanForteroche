@@ -1,5 +1,5 @@
 <h3>Episodes</h3>
-<a href="addEpisode" class="lead">Ajouter un épisode</a>
+<a href="<?= HOST; ?>/addEpisode" class="lead">Ajouter un épisode</a>
 <div class="table-responsive">
 	<table class="table table-bordered table-hover mt-3">
 		<thead class="thead-dark">
@@ -17,10 +17,10 @@
 				?>
 				<tr>
 					<td><?=strip_tags($episode->getChapter()); ?></td>
-					<td><a href="episode=<?=strip_tags($episode->getChapter()); ?>"><?=strip_tags($episode->getTitle()); ?></a></td>
+					<td><a href="<?= HOST; ?>/episode/<?=strip_tags($episode->getChapter()); ?>"><?=strip_tags($episode->getTitle()); ?></a></td>
 					<td><?= strip_tags($episode->getCreationDate()); ?></td>
 					<td><?= strip_tags($episode->getUpdateDate()); ?></td>
-					<td><a href="updateEpisode=<?= strip_tags($episode->getChapter()); ?>">Modifier</a> <a href="deleteEpisode=<?= strip_tags($episode->getChapter()); ?>" class="text-danger">Supprimer</a></td>
+					<td><a href="<?= HOST; ?>/updateEpisode/<?= strip_tags($episode->getChapter()); ?>">Modifier</a> <a href="<?= HOST; ?>/deleteEpisode/<?= strip_tags($episode->getChapter()); ?>" class="text-danger">Supprimer</a></td>
 				</tr>
 				<?php
 			}
@@ -49,7 +49,7 @@
 					<td><?= strip_tags($rudeComment->getEpisodeId()); ?></td>
 					<td><?= strip_tags($rudeComment->getComment()); ?></td>
 					<td><?= strip_tags($rudeComment->getRudeComment()); ?></td>
-					<td><a href="deleteComment-<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
+					<td><a href="<?= HOST; ?>/deleteComment=<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
 				</tr>
 				<?php
 			}
@@ -73,7 +73,7 @@
 				<tr>
 					<td><?= strip_tags($user->getLogin()); ?></td>
 					<td><?= strip_tags($user->getEmail()); ?></td>
-					<td><a href="deleteUser-<?= strip_tags($user->getId()); ?>" class="text-danger">Supprimer</a></td>
+					<td><a href="<?= HOST; ?>/deleteUser=<?= strip_tags($user->getId()); ?>" class="text-danger">Supprimer</a></td>
 				</tr>
 				<?php
 			}

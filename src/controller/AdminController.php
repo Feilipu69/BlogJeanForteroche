@@ -11,7 +11,7 @@ class AdminController
 {
 	public function checkLogin(){
 		if ($_SESSION['login'] !== 'Jean') {
-			header('Location:accueil');
+			header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 		} else {
 			return true;
 		}
@@ -42,7 +42,7 @@ class AdminController
 			if (isset($post['addEpisode'])) {
 				if (!empty($post['chapter']) && !empty($post['title']) && !empty($post['content'])) {
 					$newEpisode = $episode->addEpisode($post);
-					header('Location:accueil');
+					header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 				}
 			}
 
@@ -60,7 +60,7 @@ class AdminController
 			if (isset($post['updateEpisode'])) {
 				if (!empty($post['title']) && !empty($post['content'])) {
 					$updateEpisode = $episode->updateEpisode($post, $chapter);
-					header('Location:accueil');
+					header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog');
 				}
 			}
 
@@ -77,7 +77,7 @@ class AdminController
 			$deleteEpisode = $episode->deleteEpisode($chapter);
 			$comments = new CommentManager();
 			$deleteComments = $comments->deleteComments($chapter);
-			header('Location:administration');
+			header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog/administration');
 		}
 	}
 
@@ -92,7 +92,7 @@ class AdminController
 		if ($this->checkLogin()) {
 			$user = new UserManager();
 			$deleteUser = $user->deleteUser($id);
-			header('Location:administration');
+			header('Location:http://' . $_SERVER['HTTP_HOST'] . '/blog/administration');
 		}
 	}
 }

@@ -17,7 +17,7 @@ class Router
 
 	public function renderController(){
 		if (isset($_GET['get'])) {
-			if ($_GET['get'] === 'accueil') {
+			if ($_GET['get'] === 'index.php') {
 				$this->frontController->home();
 			}
 			elseif ($_GET['get'] === 'episode') {

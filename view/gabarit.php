@@ -12,7 +12,7 @@
 		<div class="container">
 			<header>
 				<div class="bg-dark">
-					<h1 class="text-center"><a href="accueil" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
+					<h1 class="text-center"><a href="<?= HOST; ?>" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
 					<h3 class="text-white text-center">Jean Forteroche</h3>
 					<nav class="navbar navbar-expand-md navbar-dark text-center">
 						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -24,34 +24,34 @@
 								if (!isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item active">
-										<a class="nav-link" href="accueil">Accueil</a>
+										<a class="nav-link" href="<?= HOST; ?>">Accueil</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="connection">Compte</a>
+										<a class="nav-link" href="<?= HOST; ?>/connection">Compte</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="inscription">Inscription</a>
+										<a class="nav-link" href="<?= HOST; ?>/inscription">Inscription</a>
 									</li>
 									<?php
 								} elseif (isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="accueil">Accueil</a>
+										<a class="nav-link" href="">Accueil</a>
 									</li>
 									<?php
 									if (isset($_SESSION['roleId']) && $_SESSION['roleId'] === 'admin') {
 										?>
 										<li class="nav-item">
-											<a class="nav-link" href="administration">Administration</a>
+											<a class="nav-link" href="<?= HOST; ?>/administration">Administration</a>
 										</li>
 										<?php
 									}
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="updateData">Modifier vos données</a>
+										<a class="nav-link" href="<?= HOST; ?>/updateData">Modifier vos données</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="disconnection">Déconnexion</a>
+										<a class="nav-link" href="<?= HOST; ?>/disconnection">Déconnexion</a>
 									</li>
 									<?php
 								}
@@ -67,7 +67,7 @@
 					<?php
 				}
 				?>
-				<img src="public/trainAlaska.png" alt="Train d'Alaska" class="img-fluid mb-3" />
+				<img src="<?= HOST; ?>/public/trainAlaska.png" alt="Train d'Alaska" class="img-fluid mb-3" />
 			</header>
 		</div>
 		<div class="container">
