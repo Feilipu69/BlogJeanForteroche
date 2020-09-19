@@ -6,11 +6,11 @@ use Bihin\Forteroche\src\model\Comment;
 
 class CommentManager extends DbConnect
 {
-	public function getComments($chapter){
+	public function getComments($parameter){
 		$comments = [];
 		$req = $this->db->prepare('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
 		$req->execute([
-			$chapter
+			$parameter
 		]);
 		while ($data = $req->fetch()) {
 			$comments[] = new Comment($data);
@@ -18,21 +18,21 @@ class CommentManager extends DbConnect
 		return $comments; 
 	}
 
-	public function getComment($episodeId){
-		$req = $this->db->query('SELECT * FROM comments WHERE episodeId = ' . $episodeId);
+	public function getComment($parameter){
+		$req = $this->db->query('SELECT * FROM comments WHERE episodeId = ' . $parameter);
 		$data = $req->fetch();
 		$comment = new Comment($data);
 		return $comment;
 	}
 
-	public function getEpisodeIdById($id){
-		$req = $this->db->query('SELECT episodeId FROM comments WHERE id = ' . $id);
+	public function getEpisodeIdById($parameter){
+		$req = $this->db->query('SELECT episodeId FROM comments WHERE id = ' . $parameter);
 		$data = $req->fetch();
 		$commentData = new Comment($data);
 		return $commentData;
 	}
 
-	public function addComment($post, $chapter){
+	public function addComment($post, $parameter){
 		$req = $this->db->prepare('INSERT INTO comments(author, episodeId, comment, dateComment) VALUES(:author, :episodeId, :comment, NOW())');
 		$newComment = new Comment($post);
 		$req->execute([
@@ -42,12 +42,12 @@ class CommentManager extends DbConnect
 		]);
 	}
 
-	public function rudeCommentPlus($id){
-		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment + 1 WHERE id = ' . $id);
+	public function rudeCommentPlus($parameter){
+		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment + 1 WHERE id = ' . $parameter);
 	}
 
-	public function rudeCommentLess($id){
-		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment - 1 WHERE id = ' . $id);
+	public function rudeCommentLess($parameter){
+		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment - 1 WHERE id = ' . $parameter);
 	}
 
 	public function getRudeComments(){
@@ -59,12 +59,11 @@ class CommentManager extends DbConnect
 		return  $rudeComments;
 	}
 
-	public function deleteComment($id){
-		$req = $this->db->exec('DELETE FROM comments WHERE id = ' . $id);
-		header('Location:administration');
+	public function deleteComment($parameter){
+		$req = $this->db->exec('DELETE FROM comments WHERE id = ' . $parameter);
 	}
 
-	public function deleteComments($chapter){
-		$req = $this->db->exec('DELETE FROM comments WHERE episodeId = ' . $chapter);
+	public function deleteComments($parameter){
+		$req = $this->db->exec('DELETE FROM comments WHERE episodeId = ' . $parameter);
 	}
 }
