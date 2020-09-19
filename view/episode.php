@@ -1,6 +1,6 @@
 <div class="mx-auto col-lg-9">
-	<div class="border rounded shadow p-3">
-		<h2 class="text-info">Chapitre <?= strip_tags($episode->getChapter()) . ' : ' . strip_tags($episode->getTitle()); ?></h2>
+	<div class="border rounded shadow p-2">
+		<h3 class="text-info">Chapitre <?= strip_tags($episode->getChapter()) . ' : ' . strip_tags($episode->getTitle()); ?></h3>
 		<p><?= strip_tags($episode->getContent()); ?></p>
 	</div>
 
@@ -64,7 +64,7 @@
 							<p><em>Ajouté le : <?= strip_tags($comment->getDateComment()); ?></em></p>
 							<p><?= strip_tags($comment->getComment()); ?></p>
 							<p><em>Signalement(s) du commentaire : </em><?= strip_tags($comment->getRudeComment()); ?></p>
-							<p><a href="<?= HOST; ?>/rudeComment=<?=strip_tags($comment->getId()); ?>#commentaires"><input type="button" value="Signaler le commentaire" class="btn btn-outline-secondary" /></a></p>
+							<p><a href="<?= HOST; ?>/rudeComment/<?=strip_tags($comment->getId()); ?>#commentaires"><input type="button" value="Signaler le commentaire" class="btn btn-outline-secondary" /></a></p>
 						</td>
 					</tr>
 					<?php

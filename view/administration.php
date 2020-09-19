@@ -49,7 +49,7 @@
 					<td><?= strip_tags($rudeComment->getEpisodeId()); ?></td>
 					<td><?= strip_tags($rudeComment->getComment()); ?></td>
 					<td><?= strip_tags($rudeComment->getRudeComment()); ?></td>
-					<td><a href="<?= HOST; ?>/deleteComment=<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
+					<td><a href="<?= HOST; ?>/deleteComment/<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
 				</tr>
 				<?php
 			}
@@ -73,7 +73,7 @@
 				<tr>
 					<td><?= strip_tags($user->getLogin()); ?></td>
 					<td><?= strip_tags($user->getEmail()); ?></td>
-					<td><a href="<?= HOST; ?>/deleteUser=<?= strip_tags($user->getId()); ?>" class="text-danger">Supprimer</a></td>
+					<td><a href="<?= HOST; ?>/deleteUser/<?= strip_tags($user->getId()); ?>" class="text-danger">Supprimer</a></td>
 				</tr>
 				<?php
 			}

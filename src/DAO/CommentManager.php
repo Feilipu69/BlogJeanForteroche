@@ -61,7 +61,6 @@ class CommentManager extends DbConnect
 
 	public function deleteComment($id){
 		$req = $this->db->exec('DELETE FROM comments WHERE id = ' . $id);
-		header('Location:administration');
 	}
 
 	public function deleteComments($chapter){
