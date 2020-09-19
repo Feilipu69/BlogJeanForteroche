@@ -36,7 +36,7 @@
 								} elseif (isset($_SESSION['login'])) {
 									?>
 									<li class="nav-item">
-										<a class="nav-link" href="">Accueil</a>
+										<a class="nav-link" href="<?= HOST; ?>">Accueil</a>
 									</li>
 									<?php
 									if (isset($_SESSION['roleId']) && $_SESSION['roleId'] === 'admin') {

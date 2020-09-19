@@ -37,7 +37,7 @@ class CommentManager extends DbConnect
 		$newComment = new Comment($post);
 		$req->execute([
 			':author' => $newComment->getAuthor(),
-			':episodeId' => $chapter,
+			':episodeId' => $parameter,
 			':comment' => $newComment->getComment()
 		]);
 	}

@@ -17,13 +17,13 @@ class FrontController
 		$myView->render(['episodes' => $episodes]);
 	}
 
-	public function getChapter($chapter){
+	public function getChapter($parameter){
 		$manager = new EpisodeManager();
 		$episodes = $manager->getEpisodes();
-		$episode = $manager->getEpisode($chapter); 
+		$episode = $manager->getEpisode($parameter); 
 
 		$episodeComments = new CommentManager();
-		$comments = $episodeComments->getComments($chapter);
+		$comments = $episodeComments->getComments($parameter);
 
 		$myView = new View('episode');
 		$myView->render(
@@ -35,12 +35,12 @@ class FrontController
 		);
 	}
 
-	public function addComment($post, $chapter){
+	public function addComment($post, $parameter){
 		if (isset($post['submit'])) {
 			if (!empty($post['author']) && !empty($post['comment'])) {
 				$manager = new CommentManager();
-				$comment = $manager->addComment($post, $chapter);
-				header('Location:' . HOST . '/episode/' . $chapter);
+				$comment = $manager->addComment($post, $parameter);
+				header('Location:' . HOST . '/episode/' . $parameter);
 			}
 		}
 	}
