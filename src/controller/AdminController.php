@@ -10,7 +10,7 @@ use Bihin\Forteroche\utils\View;
 class AdminController 
 {
 	public function checkLogin(){
-		if ($_SESSION['login'] !== 'Jean') {
+		if ($_SESSION['roleId'] !== 'admin') {
 			header('Location:' . HOST);
 		} else {
 			return true;

@@ -47,9 +47,15 @@ class FrontController
 
 	public function rudeComment($parameter){
 		$manager = new CommentManager();
-		$rudeComment = $manager->rudeCommentPlus($parameter);
-		$chapter = $manager->getEpisodeIdById($parameter);
-		header('Location:' . HOST . '/episode/' . $chapter->getEpisodeId());
+		$comment = $manager->getComment($parameter);
+		$disliker = $comment->getDisliker();
+		if (isset($_SESSION['login']) && $disliker === $_SESSION['login']) {
+			$rudeComment = $manager->rudeCommentLess($parameter);
+		} elseif ($disliker !== $_SESSION['login']) {
+			$rudeComment = $manager->rudeCommentPlus($parameter);
+		}
+		$chapter= $comment->getEpisodeId();
+		header('Location:' . HOST . '/episode/' . $chapter);
 	}
 
 	public function connection($post){

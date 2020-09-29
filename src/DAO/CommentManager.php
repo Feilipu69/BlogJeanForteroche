@@ -19,17 +19,13 @@ class CommentManager extends DbConnect
 	}
 
 	public function getComment($parameter){
-		$req = $this->db->query('SELECT * FROM comments WHERE episodeId = ' . $parameter);
+		$req = $this->db->prepare('SELECT * FROM comments WHERE id = ?');
+		$req->execute([
+			$parameter
+		]);
 		$data = $req->fetch();
 		$comment = new Comment($data);
 		return $comment;
-	}
-
-	public function getEpisodeIdById($parameter){
-		$req = $this->db->query('SELECT episodeId FROM comments WHERE id = ' . $parameter);
-		$data = $req->fetch();
-		$commentData = new Comment($data);
-		return $commentData;
 	}
 
 	public function addComment($post, $parameter){
@@ -43,11 +39,18 @@ class CommentManager extends DbConnect
 	}
 
 	public function rudeCommentPlus($parameter){
-		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment + 1 WHERE id = ' . $parameter);
+		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment + 1, disliker = ? WHERE id = ?');
+		$req->execute([
+			$_SESSION['login'],
+			$parameter
+		]);
 	}
 
 	public function rudeCommentLess($parameter){
-		$req = $this->db->exec('UPDATE comments SET rudeComment=rudeComment - 1 WHERE id = ' . $parameter);
+		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment - 1, disliker = "nemo"  WHERE id = ?');
+		$req->execute([
+			$parameter
+		]);
 	}
 
 	public function getRudeComments(){
@@ -60,10 +63,16 @@ class CommentManager extends DbConnect
 	}
 
 	public function deleteComment($parameter){
-		$req = $this->db->exec('DELETE FROM comments WHERE id = ' . $parameter);
+		$req = $this->db->prepare('DELETE FROM comments WHERE id = ?');
+		$req->execute([
+			$parameter
+		]);
 	}
 
 	public function deleteComments($parameter){
-		$req = $this->db->exec('DELETE FROM comments WHERE episodeId = ' . $parameter);
+		$req = $this->db->prepare('DELETE FROM comments WHERE episodeId = ?');
+		$req->execute([
+			$parameter
+		]);
 	}
 }
