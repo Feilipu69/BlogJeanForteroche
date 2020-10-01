@@ -17,13 +17,13 @@ class FrontController
 		$myView->render(['episodes' => $episodes]);
 	}
 
-	public function getChapter($parameter){
+	public function getEpisode($chapter){
 		$manager = new EpisodeManager();
 		$episodes = $manager->getEpisodes();
-		$episode = $manager->getEpisode($parameter); 
+		$episode = $manager->getEpisode($chapter); 
 
 		$episodeComments = new CommentManager();
-		$comments = $episodeComments->getComments($parameter);
+		$comments = $episodeComments->getComments($chapter);
 
 		$myView = new View('episode');
 		$myView->render(
@@ -35,27 +35,27 @@ class FrontController
 		);
 	}
 
-	public function addComment($post, $parameter){
+	public function addComment($post, $chapter){
 		if (isset($post['submit'])) {
 			if (!empty($post['author']) && !empty($post['comment'])) {
 				$manager = new CommentManager();
-				$comment = $manager->addComment($post, $parameter);
-				header('Location:' . HOST . '/episode/' . $parameter);
+				$comment = $manager->addComment($post, $chapter);
+				header('Location:' . HOST . '/episode/' . $chapter);
 			}
 		}
 	}
 
-	public function rudeComment($parameter){
+	public function rudeComment($id){
 		$manager = new CommentManager();
-		$comment = $manager->getComment($parameter);
+		$comment = $manager->getComment($id);
 		$disliker = $comment->getDisliker();
 		if (isset($_SESSION['login']) && $disliker === $_SESSION['login']) {
-			$rudeComment = $manager->rudeCommentLess($parameter);
+			$rudeComment = $manager->rudeCommentLess($id);
 		} elseif ($disliker !== $_SESSION['login']) {
-			$rudeComment = $manager->rudeCommentPlus($parameter);
+			$rudeComment = $manager->rudeCommentPlus($id);
 		}
-		$chapter= $comment->getEpisodeId();
-		header('Location:' . HOST . '/episode/' . $chapter);
+		$episode= $comment->getEpisodeId();
+		header('Location:' . HOST . '/episode/' . $episode);
 	}
 
 	public function connection($post){

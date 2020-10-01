@@ -53,13 +53,13 @@ class AdminController
 		}
 	}
 
-	public function updateEpisode($post, $parameter){
+	public function updateEpisode($post, $chapter){
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
-			$episodeData = $episode->getEpisode($parameter);
+			$episodeData = $episode->getEpisode($chapter);
 			if (isset($post['updateEpisode'])) {
 				if (!empty($post['title']) && !empty($post['content'])) {
-					$updateEpisode = $episode->updateEpisode($post, $parameter);
+					$updateEpisode = $episode->updateEpisode($post, $chapter);
 					header('Location:' . HOST);
 				}
 			}
@@ -71,28 +71,28 @@ class AdminController
 		}
 	}
 
-	public function deleteEpisode($parameter){
+	public function deleteEpisode($chapter){
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
-			$deleteEpisode = $episode->deleteEpisode($parameter);
+			$deleteEpisode = $episode->deleteEpisode($chapter);
 			$comments = new CommentManager();
-			$deleteComments = $comments->deleteComments($parameter);
+			$deleteComments = $comments->deleteComments($chapter);
 			header('Location:' . HOST . '/administration');
 		}
 	}
 
-	public function deleteComment($parameter){
+	public function deleteComment($commentId){
 		if ($this->checkLogin()) {
 			$comment = new CommentManager();
-			$deleteComment = $comment->deleteComment($parameter);
+			$deleteComment = $comment->deleteComment($commentId);
 			header('Location:' . HOST . '/administration');
 		}
 	}
 
-	public function deleteUser($parameter){
+	public function deleteUser($userId){
 		if ($this->checkLogin()) {
 			$user = new UserManager();
-			$deleteUser = $user->deleteUser($parameter);
+			$deleteUser = $user->deleteUser($userId);
 			header('Location:' . HOST . '/administration');
 		}
 	}

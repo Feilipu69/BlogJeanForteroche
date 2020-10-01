@@ -6,11 +6,11 @@ use Bihin\Forteroche\src\model\Comment;
 
 class CommentManager extends DbConnect
 {
-	public function getComments($parameter){
+	public function getComments($episodeId){
 		$comments = [];
 		$req = $this->db->prepare('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
 		$req->execute([
-			$parameter
+			$episodeId
 		]);
 		while ($data = $req->fetch()) {
 			$comments[] = new Comment($data);
@@ -18,38 +18,38 @@ class CommentManager extends DbConnect
 		return $comments; 
 	}
 
-	public function getComment($parameter){
+	public function getComment($commentId){
 		$req = $this->db->prepare('SELECT * FROM comments WHERE id = ?');
 		$req->execute([
-			$parameter
+			$commentId
 		]);
 		$data = $req->fetch();
 		$comment = new Comment($data);
 		return $comment;
 	}
 
-	public function addComment($post, $parameter){
+	public function addComment($post, $episodeId){
 		$req = $this->db->prepare('INSERT INTO comments(author, episodeId, comment, dateComment) VALUES(:author, :episodeId, :comment, NOW())');
 		$newComment = new Comment($post);
 		$req->execute([
 			':author' => $newComment->getAuthor(),
-			':episodeId' => $parameter,
+			':episodeId' => $episodeId,
 			':comment' => $newComment->getComment()
 		]);
 	}
 
-	public function rudeCommentPlus($parameter){
+	public function rudeCommentPlus($commentId){
 		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment + 1, disliker = ? WHERE id = ?');
 		$req->execute([
 			$_SESSION['login'],
-			$parameter
+			$commentId
 		]);
 	}
 
-	public function rudeCommentLess($parameter){
+	public function rudeCommentLess($commentId){
 		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment - 1, disliker = "nemo"  WHERE id = ?');
 		$req->execute([
-			$parameter
+			$commentId
 		]);
 	}
 
@@ -62,17 +62,17 @@ class CommentManager extends DbConnect
 		return  $rudeComments;
 	}
 
-	public function deleteComment($parameter){
+	public function deleteComment($commentId){
 		$req = $this->db->prepare('DELETE FROM comments WHERE id = ?');
 		$req->execute([
-			$parameter
+			$commentId
 		]);
 	}
 
-	public function deleteComments($parameter){
+	public function deleteComments($episodeId){
 		$req = $this->db->prepare('DELETE FROM comments WHERE episodeId = ?');
 		$req->execute([
-			$parameter
+			$episodeId
 		]);
 	}
 }

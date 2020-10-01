@@ -14,10 +14,10 @@ class EpisodeManager extends DbConnect
 		return $episodes;
 	}
 
-	public function getEpisode($parameter){
+	public function getEpisode($chapter){
 		$req = $this->db->prepare('SELECT * FROM episodes WHERE chapter = ?');
 		$req->execute([
-			$parameter
+			$chapter
 		]);
 		$data = $req->fetch();
 		$episode = new Episode($data);
@@ -34,20 +34,20 @@ class EpisodeManager extends DbConnect
 		]);
 	}
 
-	public function updateEpisode($post, $parameter){
+	public function updateEpisode($post, $chapter){
 		$episode = new Episode($post);
 		$req = $this->db->prepare('UPDATE episodes SET title = :title, content = :content, updateDate = NOW() WHERE chapter = :chapter');
 		$req->execute([
 			':title' => $episode->getTitle(),
 			':content' => $episode->getContent(),
-			':chapter' => $parameter
+			':chapter' => $chapter
 		]);
 	}
 
-	public function deleteEpisode($parameter){
+	public function deleteEpisode($chapter){
 		$req = $this->db->prepare('DELETE FROM episodes WHERE chapter = ? ');
 		$req->execute([
-			$parameter
+			$chapter
 		]);
 	}
 }
