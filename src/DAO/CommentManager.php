@@ -8,7 +8,7 @@ class CommentManager extends DbConnect
 {
 	public function getComments($episodeId){
 		$comments = [];
-		$req = $this->db->prepare('SELECT id, author, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
+		$req = $this->db->prepare('SELECT id, login, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
 		$req->execute([
 			$episodeId
 		]);
@@ -29,20 +29,20 @@ class CommentManager extends DbConnect
 	}
 
 	public function addComment($post, $episodeId){
-		$req = $this->db->prepare('INSERT INTO comments(author, episodeId, comment, dateComment) VALUES(:author, :episodeId, :comment, NOW())');
+		$req = $this->db->prepare('INSERT INTO comments(login, episodeId, comment, dateComment) VALUES(:login, :episodeId, :comment, NOW())');
 		$newComment = new Comment($post);
 		$req->execute([
-			':author' => $newComment->getAuthor(),
+			':login' => $newComment->getLogin(),
 			':episodeId' => $episodeId,
 			':comment' => $newComment->getComment()
 		]);
 	}
 
 	public function rudeCommentPlus($commentId){
-		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment + 1, disliker = ? WHERE id = ?');
+		$req = $this->db->prepare('INSERT INTO flagComments (commentId, disliker) VALUES(:commentId, :disliker)');
 		$req->execute([
-			$_SESSION['login'],
-			$commentId
+			'commentId' => $commentId,
+			'disliker' => $_SESSION['login']
 		]);
 	}
 

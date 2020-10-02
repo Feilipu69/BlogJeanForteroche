@@ -41,8 +41,8 @@
 			<div>
 				<form method="post" action="<?= HOST; ?>/addComment/<?= strip_tags($episode->getChapter()); ?>">
 					<div class="form-group">
-						<label for="author">Pseudo : </label>
-						<input type="text" name="author" id="author" required/>
+						<label for="login">Pseudo : </label>
+						<input type="text" name="login" id="login" required/>
 					</div>
 					<div class="form-group">
 						<label for="comment">Commentaire :</label>
@@ -60,7 +60,7 @@
 					?>
 					<tr id="commentaires">
 						<td>
-							<p><strong><?= strip_tags($comment->getAuthor()); ?></strong> : </p>
+							<p><strong><?= strip_tags($comment->getLogin()); ?></strong> : </p>
 							<p><em>Ajouté le : <?= strip_tags($comment->getDateComment()); ?></em></p>
 							<p><?= strip_tags($comment->getComment()); ?></p>
 							<p><em>Signalement(s) du commentaire : </em><?= strip_tags($comment->getRudeComment()); ?></p>

@@ -4,7 +4,7 @@ namespace Bihin\Forteroche\src\model;
 class Comment
 {
 	private $id;
-	private $author;
+	private $login;
 	private $episodeId;
 	private $comment;
 	private $dateComment;
@@ -29,8 +29,8 @@ class Comment
 		return $this->id;
 	}
 
-	public function getAuthor(){
-		return $this->author;
+	public function getLogin(){
+		return $this->login;
 	}
 
 	public function getEpisodeId(){
@@ -59,8 +59,8 @@ class Comment
 		}
 	}
 
-	public function setAuthor(string $author){
-		$this->author = $author;
+	public function setLogin(string $login){
+		$this->login = $login;
 	}
 
 	public function setEpisodeId(int $episodeId){

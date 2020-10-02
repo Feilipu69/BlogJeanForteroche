@@ -37,7 +37,7 @@ class FrontController
 
 	public function addComment($post, $chapter){
 		if (isset($post['submit'])) {
-			if (!empty($post['author']) && !empty($post['comment'])) {
+			if (!empty($post['login']) && !empty($post['comment'])) {
 				$manager = new CommentManager();
 				$comment = $manager->addComment($post, $chapter);
 				header('Location:' . HOST . '/episode/' . $chapter);
@@ -45,14 +45,14 @@ class FrontController
 		}
 	}
 
-	public function rudeComment($id){
+	public function rudeComment($commentId){
 		$manager = new CommentManager();
-		$comment = $manager->getComment($id);
+		$comment = $manager->getComment($commentId);
 		$disliker = $comment->getDisliker();
 		if (isset($_SESSION['login']) && $disliker === $_SESSION['login']) {
-			$rudeComment = $manager->rudeCommentLess($id);
+			$rudeComment = $manager->rudeCommentLess($commentId);
 		} elseif ($disliker !== $_SESSION['login']) {
-			$rudeComment = $manager->rudeCommentPlus($id);
+			$rudeComment = $manager->rudeCommentPlus($commentId);
 		}
 		$episode= $comment->getEpisodeId();
 		header('Location:' . HOST . '/episode/' . $episode);

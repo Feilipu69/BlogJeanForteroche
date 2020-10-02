@@ -45,7 +45,7 @@
 			foreach ($rudeComments as $rudeComment) {
 				?>
 				<tr>
-					<td><?= strip_tags($rudeComment->getAuthor()); ?></td>
+					<td><?= strip_tags($rudeComment->getLogin()); ?></td>
 					<td><?= strip_tags($rudeComment->getEpisodeId()); ?></td>
 					<td><?= strip_tags($rudeComment->getComment()); ?></td>
 					<td><?= strip_tags($rudeComment->getRudeComment()); ?></td>
