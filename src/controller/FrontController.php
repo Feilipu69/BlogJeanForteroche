@@ -3,6 +3,7 @@ namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
 	EpisodeManager,
 	CommentManager,
+	FlagCommentsManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
@@ -48,12 +49,13 @@ class FrontController
 	public function rudeComment($commentId){
 		$manager = new CommentManager();
 		$comment = $manager->getComment($commentId);
-		$disliker = $comment->getDisliker();
-		if (isset($_SESSION['login']) && $disliker === $_SESSION['login']) {
+		$userLogin = $comment->getLogin();
+		if (isset($_SESSION['login']) && $userLogin === $_SESSION['login']) {
 			$rudeComment = $manager->rudeCommentLess($commentId);
-		} elseif ($disliker !== $_SESSION['login']) {
+		} elseif ($userLogin !== $_SESSION['login']) {
 			$rudeComment = $manager->rudeCommentPlus($commentId);
 		}
+
 		$episode= $comment->getEpisodeId();
 		header('Location:' . HOST . '/episode/' . $episode);
 	}
