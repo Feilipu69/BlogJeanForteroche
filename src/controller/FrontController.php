@@ -49,10 +49,10 @@ class FrontController
 	public function rudeComment($commentId){
 		$manager = new CommentManager();
 		$comment = $manager->getComment($commentId);
-		$userLogin = $comment->getLogin();
-		if (isset($_SESSION['login']) && $userLogin === $_SESSION['login']) {
+		$dislike = $comment->getDislike();
+		if (isset($_SESSION['login']) && $dislike === $_SESSION['login']) {
 			$rudeComment = $manager->rudeCommentLess($commentId);
-		} elseif ($userLogin !== $_SESSION['login']) {
+		} elseif ($dislike !== $_SESSION['login']) {
 			$rudeComment = $manager->rudeCommentPlus($commentId);
 		}
 

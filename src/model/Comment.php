@@ -9,6 +9,7 @@ class Comment
 	private $comment;
 	private $dateComment;
 	private $rudeComment;
+	private $dislike;
 
 	public function __construct(array $datas){
 		$this->hydrate($datas);
@@ -46,7 +47,11 @@ class Comment
 	public function getRudeComment(){
 		return $this->rudeComment;
 	}
-	 
+
+	public function getDislike(){
+		return $this->dislike;
+	}
+
 	public function setId(int $id){
 		if ($id > 0) {
 			$this->id = $id;
@@ -71,5 +76,9 @@ class Comment
 
 	public function setRudeComment($rudeComment){
 		$this->rudeComment = $rudeComment;
+	}
+
+	public function setDislike($dislike){
+		$this->dislike = $dislike;
 	}
 }

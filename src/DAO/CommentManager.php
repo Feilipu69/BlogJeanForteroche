@@ -39,15 +39,15 @@ class CommentManager extends DbConnect
 	}
 
 	public function rudeCommentPlus($commentId){
-		$req = $this->db->prepare('INSERT INTO flagComments (commentId, userLogin) VALUES(:commentId, :userLogin)');
+		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment + 1, dislike = ? WHERE id = ?');
 		$req->execute([
-			'commentId' => $commentId,
-			'userLogin' => $_SESSION['login']
+			$_SESSION['login'],
+			$commentId
 		]);
 	}
 
 	public function rudeCommentLess($commentId){
-		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment - 1, disliker = "nemo"  WHERE id = ?');
+		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment - 1, dislike = "nemo"  WHERE id = ?');
 		$req->execute([
 			$commentId
 		]);
