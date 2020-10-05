@@ -3,7 +3,6 @@ namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
 	EpisodeManager,
 	CommentManager,
-	FlagCommentsManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
