@@ -28,7 +28,7 @@ class UserManager extends DbConnect
 		return $userData;
 	}
 
-	public function getUSers(){
+	public function getUsers(){
 		$req = $this->db->query('SELECT * FROM users');
 		while ($data = $req->fetch()) {
 			$users[] = new User($data);
