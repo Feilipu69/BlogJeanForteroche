@@ -38,6 +38,29 @@ class CommentManager extends DbConnect
 		]);
 	}
 
+	public function getFlagComment($commentId){
+		$req = $this->db->prepare('SELECT * FROM flagComments WHERE userLogin = ? AND commentId = ?');
+		$req->execute([
+			$_SESSION['login'],
+			$commentId
+		]);
+		$data = $req->fetch();
+		return $data;
+	}
+
+	public function flagComment($commentId){
+		$req = $this->db->prepare('INSERT INTO flagComments (userLogin, commentId) SELECT dislike, id FROM comments WHERE id = ?');
+		$req->execute([ $commentId ]);
+	}
+
+	public function deleteFlagComment($commentId){
+		$req = $this->db->prepare('DELETE FROM flagComments WHERE userLogin = ? AND commentId = ?');
+		$req->execute([
+			$_SESSION['login'],
+			$commentId
+		]);
+	}
+
 	public function rudeCommentPlus($commentId){
 		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment + 1, dislike = ? WHERE id = ?');
 		$req->execute([
