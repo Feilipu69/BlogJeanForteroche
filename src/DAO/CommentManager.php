@@ -1,14 +1,17 @@
 <?php
 namespace Bihin\Forteroche\src\DAO;
 
-use Bihin\Forteroche\src\DAO\DbConnect;
+use Bihin\Forteroche\src\DAO\{
+	DbConnect,
+	UserManager
+};
 use Bihin\Forteroche\src\model\Comment;
 
 class CommentManager extends DbConnect
 {
 	public function getComments($episodeId){
 		$comments = [];
-		$req = $this->db->prepare('SELECT id, login, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
+		$req = $this->db->prepare('SELECT id, login, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
 		$req->execute([
 			$episodeId
 		]);
@@ -38,52 +41,6 @@ class CommentManager extends DbConnect
 		]);
 	}
 
-	public function getFlagComment($commentId){
-		$req = $this->db->prepare('SELECT * FROM flagComments WHERE userLogin = ? AND commentId = ?');
-		$req->execute([
-			$_SESSION['login'],
-			$commentId
-		]);
-		$data = $req->fetch();
-		return $data;
-	}
-
-	public function flagComment($commentId){
-		$req = $this->db->prepare('INSERT INTO flagComments (userLogin, commentId) SELECT dislike, id FROM comments WHERE id = ?');
-		$req->execute([ $commentId ]);
-	}
-
-	public function deleteFlagComment($commentId){
-		$req = $this->db->prepare('DELETE FROM flagComments WHERE userLogin = ? AND commentId = ?');
-		$req->execute([
-			$_SESSION['login'],
-			$commentId
-		]);
-	}
-
-	public function rudeCommentPlus($commentId){
-		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment + 1, dislike = ? WHERE id = ?');
-		$req->execute([
-			$_SESSION['login'],
-			$commentId
-		]);
-	}
-
-	public function rudeCommentLess($commentId){
-		$req = $this->db->prepare('UPDATE comments SET rudeComment=rudeComment - 1, dislike = "nemo"  WHERE id = ?');
-		$req->execute([
-			$commentId
-		]);
-	}
-
-	public function getRudeComments(){
-		$rudeComments = [];
-		$req = $this->db->query('SELECT * FROM comments WHERE rudeComment > 0');
-		while ($data = $req->fetch()) {
-			$rudeComments[] = new Comment($data);
-		}
-		return  $rudeComments;
-	}
 
 	public function deleteComment($commentId){
 		$req = $this->db->prepare('DELETE FROM comments WHERE id = ?');

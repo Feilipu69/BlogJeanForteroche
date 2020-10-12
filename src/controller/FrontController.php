@@ -1,8 +1,9 @@
 <?php
 namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
-	EpisodeManager,
 	CommentManager,
+	EpisodeManager,
+	FlagCommentManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
@@ -24,15 +25,32 @@ class FrontController
 
 		$episodeComments = new CommentManager();
 		$comments = $episodeComments->getComments($chapter);
+		if (!empty($comments)) {
+			$flagsManager = new FlagCommentManager();
+			$flags = $flagsManager->countAllFlags($comments[0]->getId()); 
+		}
 
-		$myView = new View('episode');
-		$myView->render(
-			[
-				'episode' => $episode,
-				'episodes' => $episodes,
-				'comments' => $comments
-			]
-		);
+
+		if (isset($flags)) {
+			$myView = new View('episode');
+			$myView->render(
+				[
+					'episode' => $episode,
+					'episodes' => $episodes,
+					'comments' => $comments,
+					'flags' => $flags
+				]
+			);
+		} else {
+			$myView = new View('episode');
+			$myView->render(
+				[
+					'episode' => $episode,
+					'episodes' => $episodes,
+					'comments' => $comments
+				]
+			);
+		}
 	}
 
 	public function addComment($post, $chapter){
@@ -46,17 +64,18 @@ class FrontController
 	}
 
 	public function rudeComment($commentId){
+		$flagManager = new FlagCommentManager();
 		$manager = new CommentManager();
-		$getFlag = $manager->getFlagComment($commentId);
-		$comment = $manager->getComment($commentId);
-		if ($getFlag !== false) {
-			$rudeComment = $manager->rudeCommentLess($commentId);
-			$deleteFlag = $manager->deleteFlagComment($commentId);
+		$flagByUser = $flagManager->countFlag($commentId);
+
+		if ($flagByUser[0] === '0') {
+			$addFlag = $flagManager->flagComment($commentId);
 		} else {
-			$rudeComment = $manager->rudeCommentPlus($commentId);
-			$flag = $manager->flagComment($commentId);
+			$lessFlag = $flagManager->deleteFlagComment($commentId);
 		}
-		$episode= $comment->getEpisodeId(); header('Location:' . HOST . '/episode/' . $episode); 
+
+		$comment = $manager->getComment($commentId);
+		$episode = $comment->getEpisodeId(); header('Location:' . HOST . '/episode/' . $episode); 
 	}
 
 	public function connection($post){

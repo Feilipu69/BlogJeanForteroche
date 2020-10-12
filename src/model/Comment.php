@@ -8,15 +8,13 @@ class Comment
 	private $episodeId;
 	private $comment;
 	private $dateComment;
-	private $rudeComment;
-	private $dislike;
 
-	public function __construct(array $datas){
-		$this->hydrate($datas);
+	public function __construct(array $data){
+		$this->hydrate($data);
 	}
 
-	public function hydrate(array $datas){
-		foreach ($datas as $key => $value) {
+	public function hydrate(array $data){
+		foreach ($data as $key => $value) {
 			$method = 'set' . ucfirst($key);
 			if (method_exists($this, $method)) {
 				$this->$method($value);
@@ -44,14 +42,6 @@ class Comment
 		return $this->dateComment;
 	}
 
-	public function getRudeComment(){
-		return $this->rudeComment;
-	}
-
-	public function getDislike(){
-		return $this->dislike;
-	}
-
 	public function setId(int $id){
 		if ($id > 0) {
 			$this->id = $id;
@@ -72,13 +62,5 @@ class Comment
 
 	public function setDateComment($dateComment){
 		$this->dateComment = $dateComment;
-	}
-
-	public function setRudeComment($rudeComment){
-		$this->rudeComment = $rudeComment;
-	}
-
-	public function setDislike($dislike){
-		$this->dislike = $dislike;
 	}
 }
