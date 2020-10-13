@@ -30,7 +30,6 @@ class FrontController
 			$flags = $flagsManager->countAllFlags($comments[0]->getId()); 
 		}
 
-
 		if (isset($flags)) {
 			$myView = new View('episode');
 			$myView->render(
