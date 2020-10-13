@@ -63,7 +63,7 @@
 				<?php
 				if (isset($_SESSION['login'])) {
 					?>
-					<p class="lead text-info pt-2">Bienvenue <?= $_SESSION['login']; ?></p>
+					<p class="lead text-info pt-2">Bienvenue <strong><?= $_SESSION['login']; ?></strong></p>
 					<?php
 				}
 				?>
