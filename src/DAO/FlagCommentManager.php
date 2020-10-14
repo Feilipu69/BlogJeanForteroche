@@ -2,11 +2,11 @@
 namespace Bihin\Forteroche\src\DAO;
 
 use Bihin\Forteroche\src\DAO\DbConnect;
-use Bihin\Forteroche\src\model\FlagComment;
+use Bihin\Forteroche\src\model\Comment;
 
 class FlagCommentManager extends DbConnect
 {
-	public function flagComment($commentId){
+	public function flagCommentPlus($commentId){
 		$req = $this->db->prepare('INSERT INTO flagComments (userId, commentId) VALUES(:userId, :commentId)');
 		$req->execute([ 
 			':userId' => $_SESSION['userId'],
@@ -14,7 +14,7 @@ class FlagCommentManager extends DbConnect
 		]);
 	}
 
-	public function deleteFlagComment($commentId){
+	public function flagCommentLess($commentId){
 		$req = $this->db->prepare('DELETE FROM flagComments WHERE userId = ? AND commentId = ?');
 		$req->execute([
 			$_SESSION['userId'],
@@ -39,5 +39,22 @@ class FlagCommentManager extends DbConnect
 		]);
 		$flagsNumber = $req->fetch();
 		return $flagsNumber;
+	}
+
+	public function getFlagsComments(){
+		$req = $this->db->query('SELECT comments.id, comments.login, comments.episodeId, comments.comment, flagComments.commentId FROM comments INNER JOIN flagComments ON comments.id = flagComments.commentId GROUP BY flagComments.commentId');
+		while ($flags = $req->fetch()) {
+			$data[] = new Comment($flags);
+		}
+		if (!empty($data)) {
+			return $data;
+		}
+	}
+
+	public function deleteFlagComment($commentId){
+		$req = $this->db->prepare('DELETE FROM flagComments WHERE commentId = ?');
+		$req->execute([
+			$commentId
+		]);
 	}
 }

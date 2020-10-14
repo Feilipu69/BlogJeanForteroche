@@ -68,9 +68,9 @@ class FrontController
 		$flagByUser = $flagManager->countFlag($commentId);
 
 		if ($flagByUser[0] === '0') {
-			$addFlag = $flagManager->flagComment($commentId);
+			$addFlag = $flagManager->flagCommentPlus($commentId);
 		} else {
-			$lessFlag = $flagManager->deleteFlagComment($commentId);
+			$lessFlag = $flagManager->flagCommentLess($commentId);
 		}
 
 		$comment = $manager->getComment($commentId);

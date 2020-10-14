@@ -3,6 +3,7 @@ namespace Bihin\Forteroche\src\controller;
 use Bihin\Forteroche\src\DAO\{
 	EpisodeManager,
 	CommentManager,
+	FlagCommentManager,
 	UserManager
 };
 use Bihin\Forteroche\utils\View;
@@ -21,8 +22,8 @@ class AdminController
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
 			$episodes = $episode->getEpisodes();
-			$comments = new CommentManager();
-			$rudeComments = $comments->getRudeComments();
+			$flags = new FlagCommentManager();
+			$rudeComments = $flags->getFlagsComments();
 			$user = new UserManager();
 			$users = $user->getUsers();
 			$myView = new View('administration');
@@ -75,14 +76,14 @@ class AdminController
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
 			$deleteEpisode = $episode->deleteEpisode($chapter);
-			$comments = new CommentManager();
-			$deleteComments = $comments->deleteComments($chapter);
 			header('Location:' . HOST . '/administration');
 		}
 	}
 
 	public function deleteComment($commentId){
 		if ($this->checkLogin()) {
+			$flag = new FlagCommentManager();
+			$deleteFlag = $flag->deleteFlagComment($commentId);
 			$comment = new CommentManager();
 			$deleteComment = $comment->deleteComment($commentId);
 			header('Location:' . HOST . '/administration');
