@@ -36,22 +36,22 @@
 				<th>Auteur</th>
 				<th>Chapitre</th>
 				<th>Commentaire</th>
-				<th>Signalements</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
-			foreach ($rudeComments as $rudeComment) {
-				?>
-				<tr>
-					<td><?= strip_tags($rudeComment->getLogin()); ?></td>
-					<td><?= strip_tags($rudeComment->getEpisodeId()); ?></td>
-					<td><?= strip_tags($rudeComment->getComment()); ?></td>
-					<td><?= strip_tags($rudeComment->getRudeComment()); ?></td>
-					<td><a href="<?= HOST; ?>/deleteComment/<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
-				</tr>
-				<?php
+			if ($rudeComments !== null) {
+				foreach ($rudeComments as $rudeComment) {
+					?>
+					<tr>
+						<td><?= strip_tags($rudeComment->getLogin()); ?></td>
+						<td><?= strip_tags($rudeComment->getEpisodeId()); ?></td>
+						<td><?= strip_tags($rudeComment->getComment()); ?></td>
+						<td><a href="<?= HOST; ?>/deleteComment/<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
+					</tr>
+					<?php
+				}
 			}
 			?>
 		</tbody>

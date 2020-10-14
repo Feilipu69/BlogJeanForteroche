@@ -48,11 +48,4 @@ class CommentManager extends DbConnect
 			$commentId
 		]);
 	}
-
-	public function deleteComments($episodeId){
-		$req = $this->db->prepare('DELETE FROM comments WHERE episodeId = ?');
-		$req->execute([
-			$episodeId
-		]);
-	}
 }
