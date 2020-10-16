@@ -48,4 +48,12 @@ class CommentManager extends DbConnect
 			$commentId
 		]);
 	}
+
+	// premier jet
+	public function deleteCommentsByEpisode($chapter){
+		$req = $this->db->prepare('DELETE FROM comments WHERE episodeId = ?');
+		$req->execute([
+			$chapter
+		]);
+	}
 }

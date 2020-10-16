@@ -76,6 +76,8 @@ class AdminController
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
 			$deleteEpisode = $episode->deleteEpisode($chapter);
+			$comments = new CommentManager();
+			$deleteComments = $comments->deleteCommentsByEpisode($chapter);
 			header('Location:' . HOST . '/administration');
 		}
 	}
