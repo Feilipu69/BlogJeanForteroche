@@ -63,7 +63,7 @@
 							<p><strong><?= strip_tags($comment->getLogin()); ?></strong> : </p>
 							<p><em>Ajouté le : <?= strip_tags($comment->getDateComment()); ?></em></p>
 							<p><?= strip_tags($comment->getComment()); ?></p>
-							<p><em>Signalement(s) du commentaire : </em><?= $flags[0]; ?></p>
+							<p><em>Signalement(s) du commentaire : </em><?php echo $flags[0]; ?></p>
 							<p><a href="<?= HOST; ?>/rudeComment/<?=strip_tags($comment->getId()); ?>#commentaires"><input type="button" value="Signaler le commentaire" class="btn btn-outline-secondary" /></a></p>
 						</td>
 					</tr>

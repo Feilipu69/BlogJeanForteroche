@@ -25,6 +25,7 @@ class FrontController
 
 		$episodeComments = new CommentManager();
 		$comments = $episodeComments->getComments($chapter);
+
 		if (!empty($comments)) {
 			$flagsManager = new FlagCommentManager();
 			$flags = $flagsManager->countAllFlags($comments[0]->getId()); 

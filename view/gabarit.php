@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<?= print_r($_SESSION); ?>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
