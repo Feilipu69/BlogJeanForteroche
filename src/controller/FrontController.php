@@ -28,7 +28,9 @@ class FrontController
 
 		if (!empty($comments)) {
 			$flagsManager = new FlagCommentManager();
-			$flags = $flagsManager->countAllFlags($comments[0]->getId()); 
+			foreach ($comments as $comment) {
+				$flags[] = $flagsManager->countAllFlags($comment->getId()); 
+			}
 		}
 
 		if (isset($flags)) {

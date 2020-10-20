@@ -11,7 +11,7 @@ class CommentManager extends DbConnect
 {
 	public function getComments($episodeId){
 		$comments = [];
-		$req = $this->db->prepare('SELECT id, login, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
+		$req = $this->db->prepare('SELECT id, login, episodeId, comment, DATE_FORMAT(dateComment, "%d/%m/%Y à %H:%i:%s") AS dateComment, rudeComment FROM comments WHERE episodeId = ? ORDER BY id DESC');
 		$req->execute([
 			$episodeId
 		]);
