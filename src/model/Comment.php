@@ -8,6 +8,7 @@ class Comment
 	private $episodeId;
 	private $comment;
 	private $dateComment;
+	private $nbreComment;
 
 	public function __construct(array $data){
 		$this->hydrate($data);
@@ -42,6 +43,10 @@ class Comment
 		return $this->dateComment;
 	}
 
+	public function getNbreComment(){
+		return $this->nbreComment;
+	}
+
 	public function setId(int $id){
 		if ($id > 0) {
 			$this->id = $id;
@@ -62,5 +67,9 @@ class Comment
 
 	public function setDateComment($dateComment){
 		$this->dateComment = $dateComment;
+	}
+
+	public function setNbreComment($nbreComment){
+		$this->nbreComment = $nbreComment;
 	}
 }

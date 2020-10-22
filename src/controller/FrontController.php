@@ -29,30 +29,18 @@ class FrontController
 		if (!empty($comments)) {
 			$flagsManager = new FlagCommentManager();
 			foreach ($comments as $comment) {
-				$flags[] = $flagsManager->countAllFlags($comment->getId()); 
+				$comment->setNbreComment($flagsManager->countAllFlags($comment->getId()));
 			}
 		}
 
-		if (isset($flags)) {
-			$myView = new View('episode');
-			$myView->render(
-				[
-					'episode' => $episode,
-					'episodes' => $episodes,
-					'comments' => $comments,
-					'flags' => $flags
-				]
-			);
-		} else {
-			$myView = new View('episode');
-			$myView->render(
-				[
-					'episode' => $episode,
-					'episodes' => $episodes,
-					'comments' => $comments
-				]
-			);
-		}
+		$myView = new View('episode');
+		$myView->render(
+			[
+				'episode' => $episode,
+				'episodes' => $episodes,
+				'comments' => $comments
+			]
+		);
 	}
 
 	public function addComment($post, $chapter){
