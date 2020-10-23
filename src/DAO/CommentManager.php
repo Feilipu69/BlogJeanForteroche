@@ -32,10 +32,11 @@ class CommentManager extends DbConnect
 	}
 
 	public function addComment($post, $episodeId){
-		$req = $this->db->prepare('INSERT INTO comments(login, episodeId, comment, dateComment) VALUES(:login, :episodeId, :comment, NOW())');
+		$req = $this->db->prepare('INSERT INTO comments(login, userId, episodeId, comment, dateComment) VALUES(:login, :userId, :episodeId, :comment, NOW())');
 		$newComment = new Comment($post);
 		$req->execute([
 			':login' => $newComment->getLogin(),
+			':userId' => $_SESSION['userId'],
 			':episodeId' => $episodeId,
 			':comment' => $newComment->getComment()
 		]);
