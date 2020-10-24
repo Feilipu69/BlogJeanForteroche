@@ -76,6 +76,16 @@ class AdminController
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
 			$deleteEpisode = $episode->deleteEpisode($chapter);
+			$comment = new CommentManager();
+			$deleteComment = $comment->deleteCommentByEpisode($chapter);
+			header('Location:' . HOST . '/administration');
+		}
+	}
+
+	public function unflagComment($commentId){
+		if ($this->checkLogin()) {
+			$flag = new FlagCommentManager();
+			$deleteFlag = $flag->deleteFlagComment($commentId);	
 			header('Location:' . HOST . '/administration');
 		}
 	}

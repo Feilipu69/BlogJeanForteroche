@@ -57,4 +57,11 @@ class FlagCommentManager extends DbConnect
 			$commentId
 		]);
 	}
+
+	public function deleteFlagCommentsByEpisode($chapter){
+		$req = $this->db->prepare('DELETE FROM flagComments WHERE episodeId = ?');
+		$req->execute[(
+			$chapter
+		)];
+	}
 }
