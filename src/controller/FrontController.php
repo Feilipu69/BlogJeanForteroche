@@ -59,8 +59,10 @@ class FrontController
 		$flagByUser = $flagManager->countFlag($commentId);
 
 		if ($flagByUser[0] === '0') {
+			$flagcomment = $manager->commentFlagged($commentId);
 			$addFlag = $flagManager->flagCommentPlus($commentId);
 		} else {
+			$unflagComment = $manager->commentUnflagged($commentId);
 			$lessFlag = $flagManager->flagCommentLess($commentId);
 		}
 
@@ -78,7 +80,8 @@ class FrontController
 					$_SESSION['roleId'] = $roleId->getName();
 					header('Location:' . HOST);
 				} else {
-					echo 'Données incorrectes';
+					echo '<script type="text/javascript">alert("Données incorrectes")</script>'; 
+					//echo 'Données incorrectes';
 				}
 			}
 		}
@@ -92,7 +95,8 @@ class FrontController
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
 				$manager= new UserManager();
 				if ($manager->checkUser($post)) {
-					echo 'Ce login existe déjà.';
+					echo '<script type="text/javascript">alert("Ce login existe déjà.")</script>'; 
+					//echo 'Ce login existe déjà.';
 				}
 				else {
 					$manager->register($post);

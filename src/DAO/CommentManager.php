@@ -42,6 +42,21 @@ class CommentManager extends DbConnect
 		]);
 	}
 
+	public function commentFlagged($commentId){
+		$req = $this->db->prepare('UPDATE comments SET dislike = ? WHERE id = ?');
+		$req->execute([
+			$_SESSION['userId'],
+			$commentId
+		]);
+	}
+
+	public function commentUnflagged($commentId){
+		$req = $this->db->prepare('UPDATE comments SET dislike = 0 WHERE id = ?');
+		$req->execute([
+			$commentId
+		]);
+	}
+
 
 	public function deleteComment($commentId){
 		$req = $this->db->prepare('DELETE FROM comments WHERE id = ?');
@@ -53,7 +68,14 @@ class CommentManager extends DbConnect
 	public function deleteCommentByEpisode($chapter){
 		$req = $this->db->prepare('DELETE FROM comments WHERE episodeId = ?');
 		$req->execute([
-			$cahpter
+			$chapter
+		]);
+	}
+
+	public function deleteCommentsByUser($userId){
+		$req = $this->db->prepare('DELETE FROM comments WHERE userId = ?');
+		$req->execute([
+			$userId
 		]);
 	}
 }

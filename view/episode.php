@@ -42,7 +42,7 @@
 				<form method="post" action="<?= HOST; ?>/addComment/<?= strip_tags($episode->getChapter()); ?>">
 					<div class="form-group">
 						<label for="login">Pseudo : </label>
-						<input type="text" name="login" id="login" required/>
+						<input type="text" name="login" id="login" value="<?= $_SESSION['login']; ?>" />
 					</div>
 					<div class="form-group">
 						<label for="comment">Commentaire :</label>
