@@ -138,9 +138,7 @@ class FrontController
 
 	public function disconnection(){
 		if (isset($_SESSION['login']) || isset($_SESSION['errors']) || isset($_SESSION['registerError'])) {
-			unset($_SESSION['login']);
-			unset($_SESSION['errors']);
-			unset($_SESSION['registerError']);
+			unset($_SESSION['login'], $_SESSION['errors'], $_SESSION['registerError']);
 			session_destroy();
 			header('Location:' . HOST);
 		}
@@ -149,7 +147,11 @@ class FrontController
 	public function deleteCount($login){
 		$manager = new UserManager();
 		$manager->deleteCount($login);
-		unset($_SESSION['login'], $_SESSION['userId']);
+		/*
+		unset($_SESSION['login'], $_SESSION['userId'], $_SESSION['errors'], $_SESSION['registerError']);
+		session_destroy();
 		header('Location:' . HOST);
+		*/
+		$this->disconnection();
 	}
 }
