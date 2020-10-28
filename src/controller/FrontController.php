@@ -80,8 +80,7 @@ class FrontController
 					$_SESSION['roleId'] = $roleId->getName();
 					header('Location:' . HOST);
 				} else {
-					echo '<script type="text/javascript">alert("Données incorrectes")</script>'; 
-					//echo 'Données incorrectes';
+					$_SESSION['errors'] = "Login ou mot de passe incorrectes";
 				}
 			}
 		}
@@ -95,8 +94,7 @@ class FrontController
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
 				$manager= new UserManager();
 				if ($manager->checkUser($post)) {
-					echo '<script type="text/javascript">alert("Ce login existe déjà.")</script>'; 
-					//echo 'Ce login existe déjà.';
+					$_SESSION['registerError'] = 'Ce login existe déjà';
 				}
 				else {
 					$manager->register($post);
@@ -139,8 +137,10 @@ class FrontController
 	}
 
 	public function disconnection(){
-		if (isset($_SESSION['login'])) {
+		if (isset($_SESSION['login']) || isset($_SESSION['errors']) || isset($_SESSION['registerError'])) {
 			unset($_SESSION['login']);
+			unset($_SESSION['errors']);
+			unset($_SESSION['registerError']);
 			session_destroy();
 			header('Location:' . HOST);
 		}
