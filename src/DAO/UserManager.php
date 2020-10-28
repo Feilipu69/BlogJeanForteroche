@@ -28,6 +28,17 @@ class UserManager extends DbConnect
 		return $userData;
 	}
 
+	public function getUser(){
+		$req = $this->db->prepare('SELECT * FROM users WHERE login = ?');
+		$req->execute([
+			$_SESSION['login']
+		]);
+		while($data = $req->fetch()){
+			$user = new User($data);
+		};
+		return $user;
+	}
+
 	public function getUsers(){
 		$req = $this->db->query('SELECT * FROM users');
 		while ($data = $req->fetch()) {

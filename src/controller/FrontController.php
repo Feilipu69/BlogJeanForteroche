@@ -99,7 +99,8 @@ class FrontController
 				else {
 					$manager->register($post);
 					$_SESSION['login'] = $post['login'];
-					$userId = $manager->getUserData();
+					//$userId = $manager->getUserData();
+					$userId = $manager->getUser();
 					$_SESSION['userId'] = $userId->getId();
 					header('Location:' . HOST);
 				}
