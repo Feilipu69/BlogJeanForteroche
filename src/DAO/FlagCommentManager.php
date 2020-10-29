@@ -6,11 +6,19 @@ use Bihin\Forteroche\src\model\Comment;
 
 class FlagCommentManager extends DbConnect
 {
+	/*
 	public function flagCommentPlus($commentId){
 		$req = $this->db->prepare('INSERT INTO flagComments (userId, commentId) VALUES(:userId, :commentId)');
 		$req->execute([ 
 			':userId' => $_SESSION['userId'],
 			':commentId' => $commentId 
+		]);
+	}
+	*/
+	public function flagCommentPlus($commentId){
+		$req = $this->db->prepare('INSERT INTO flagComments (commentId, userIdFlagged, episodeId, userId) SELECT id, userId, episodeId, dislike FROM comments WHERE id = ?');
+		$req->execute([ 
+			$commentId 
 		]);
 	}
 
@@ -55,6 +63,20 @@ class FlagCommentManager extends DbConnect
 		$req = $this->db->prepare('DELETE FROM flagComments WHERE commentId = ?');
 		$req->execute([
 			$commentId
+		]);
+	}
+
+	public function deleteFlagCommentsByEpisode($chapter){
+		$req = $this->db->prepare('DELETE FROM flagComments WHERE episodeId = ?');
+		$req->execute([
+			$chapter
+		]);
+	}
+
+	public function deleteFlaggedCommentsByUser($userId){
+		$req = $this->db->prepare('DELETE FROM flagComments WHERE userIdFlagged = ?');
+		$req->execute([
+			$userId
 		]);
 	}
 }

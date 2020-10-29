@@ -48,7 +48,7 @@
 						<td><?= strip_tags($rudeComment->getLogin()); ?></td>
 						<td><?= strip_tags($rudeComment->getEpisodeId()); ?></td>
 						<td><?= strip_tags($rudeComment->getComment()); ?></td>
-						<td><a href="<?= HOST; ?>/deleteComment/<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
+						<td><a href="<?= HOST; ?>/unflagComment/<?= strip_tags($rudeComment->getId()); ?>">Désignaler</a> <a href="<?= HOST; ?>/deleteComment/<?= strip_tags($rudeComment->getId()); ?>" class="text-danger">Supprimer</a></td>
 					</tr>
 					<?php
 				}

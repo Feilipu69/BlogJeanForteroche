@@ -76,6 +76,18 @@ class AdminController
 		if ($this->checkLogin()) {
 			$episode = new EpisodeManager();
 			$deleteEpisode = $episode->deleteEpisode($chapter);
+			$comment = new CommentManager();
+			$deleteComment = $comment->deleteCommentByEpisode($chapter);
+			$flag = new FlagCommentManager();
+			$deleteFlag = $flag->deleteFlagCommentsByEpisode($chapter);
+			header('Location:' . HOST . '/administration');
+		}
+	}
+
+	public function unflagComment($commentId){
+		if ($this->checkLogin()) {
+			$flag = new FlagCommentManager();
+			$deleteFlag = $flag->deleteFlagComment($commentId);	
 			header('Location:' . HOST . '/administration');
 		}
 	}
@@ -94,6 +106,10 @@ class AdminController
 		if ($this->checkLogin()) {
 			$user = new UserManager();
 			$deleteUser = $user->deleteUser($userId);
+			$comments = new CommentManager();
+			$deleteComments = $comments->deleteCommentsByUser($userId);	
+			$flag = new FlagCommentManager();
+			$deleteFlagComments = $flag->deleteFlaggedCommentsByUser($userId);
 			header('Location:' . HOST . '/administration');
 		}
 	}

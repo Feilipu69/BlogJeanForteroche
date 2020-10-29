@@ -56,6 +56,9 @@ class Router
 			elseif ($_GET['route'] === "deleteEpisode") {
 				$this->adminController->deleteEpisode($_GET['parameter']);
 			}
+			elseif ($_GET['route'] === "unflagComment") {
+				$this->adminController->unflagComment($_GET['parameter']);
+			}
 			elseif ($_GET['route'] === 'deleteComment') {
 				$this->adminController->deleteComment($_GET['parameter']);
 			}

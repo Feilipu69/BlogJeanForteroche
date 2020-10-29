@@ -25,31 +25,22 @@ class FrontController
 
 		$episodeComments = new CommentManager();
 		$comments = $episodeComments->getComments($chapter);
+
 		if (!empty($comments)) {
 			$flagsManager = new FlagCommentManager();
-			$flags = $flagsManager->countAllFlags($comments[0]->getId()); 
+			foreach ($comments as $comment) {
+				$comment->setNbreComment($flagsManager->countAllFlags($comment->getId()));
+			}
 		}
 
-		if (isset($flags)) {
-			$myView = new View('episode');
-			$myView->render(
-				[
-					'episode' => $episode,
-					'episodes' => $episodes,
-					'comments' => $comments,
-					'flags' => $flags
-				]
-			);
-		} else {
-			$myView = new View('episode');
-			$myView->render(
-				[
-					'episode' => $episode,
-					'episodes' => $episodes,
-					'comments' => $comments
-				]
-			);
-		}
+		$myView = new View('episode');
+		$myView->render(
+			[
+				'episode' => $episode,
+				'episodes' => $episodes,
+				'comments' => $comments
+			]
+		);
 	}
 
 	public function addComment($post, $chapter){
@@ -68,8 +59,10 @@ class FrontController
 		$flagByUser = $flagManager->countFlag($commentId);
 
 		if ($flagByUser[0] === '0') {
+			$flagcomment = $manager->commentFlagged($commentId);
 			$addFlag = $flagManager->flagCommentPlus($commentId);
 		} else {
+			$unflagComment = $manager->commentUnflagged($commentId);
 			$lessFlag = $flagManager->flagCommentLess($commentId);
 		}
 
@@ -87,7 +80,7 @@ class FrontController
 					$_SESSION['roleId'] = $roleId->getName();
 					header('Location:' . HOST);
 				} else {
-					echo 'Données incorrectes';
+					$_SESSION['errors'] = "Login ou mot de passe incorrectes";
 				}
 			}
 		}
@@ -101,12 +94,13 @@ class FrontController
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
 				$manager= new UserManager();
 				if ($manager->checkUser($post)) {
-					echo 'Ce login existe déjà.';
+					$_SESSION['registerError'] = 'Ce login existe déjà';
 				}
 				else {
 					$manager->register($post);
 					$_SESSION['login'] = $post['login'];
-					$userId = $manager->getUserData();
+					//$userId = $manager->getUserData();
+					$userId = $manager->getUser();
 					$_SESSION['userId'] = $userId->getId();
 					header('Location:' . HOST);
 				}
@@ -144,8 +138,8 @@ class FrontController
 	}
 
 	public function disconnection(){
-		if (isset($_SESSION['login'])) {
-			unset($_SESSION['login']);
+		if (isset($_SESSION['login']) || isset($_SESSION['errors']) || isset($_SESSION['registerError'])) {
+			unset($_SESSION['login'], $_SESSION['errors'], $_SESSION['registerError']);
 			session_destroy();
 			header('Location:' . HOST);
 		}
@@ -154,7 +148,11 @@ class FrontController
 	public function deleteCount($login){
 		$manager = new UserManager();
 		$manager->deleteCount($login);
-		unset($_SESSION['login'], $_SESSION['userId']);
+		/*
+		unset($_SESSION['login'], $_SESSION['userId'], $_SESSION['errors'], $_SESSION['registerError']);
+		session_destroy();
 		header('Location:' . HOST);
+		*/
+		$this->disconnection();
 	}
 }

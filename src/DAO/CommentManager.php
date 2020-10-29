@@ -32,12 +32,28 @@ class CommentManager extends DbConnect
 	}
 
 	public function addComment($post, $episodeId){
-		$req = $this->db->prepare('INSERT INTO comments(login, episodeId, comment, dateComment) VALUES(:login, :episodeId, :comment, NOW())');
+		$req = $this->db->prepare('INSERT INTO comments(login, userId, episodeId, comment, dateComment) VALUES(:login, :userId, :episodeId, :comment, NOW())');
 		$newComment = new Comment($post);
 		$req->execute([
 			':login' => $newComment->getLogin(),
+			':userId' => $_SESSION['userId'],
 			':episodeId' => $episodeId,
 			':comment' => $newComment->getComment()
+		]);
+	}
+
+	public function commentFlagged($commentId){
+		$req = $this->db->prepare('UPDATE comments SET dislike = ? WHERE id = ?');
+		$req->execute([
+			$_SESSION['userId'],
+			$commentId
+		]);
+	}
+
+	public function commentUnflagged($commentId){
+		$req = $this->db->prepare('UPDATE comments SET dislike = 0 WHERE id = ?');
+		$req->execute([
+			$commentId
 		]);
 	}
 
@@ -46,6 +62,20 @@ class CommentManager extends DbConnect
 		$req = $this->db->prepare('DELETE FROM comments WHERE id = ?');
 		$req->execute([
 			$commentId
+		]);
+	}
+
+	public function deleteCommentByEpisode($chapter){
+		$req = $this->db->prepare('DELETE FROM comments WHERE episodeId = ?');
+		$req->execute([
+			$chapter
+		]);
+	}
+
+	public function deleteCommentsByUser($userId){
+		$req = $this->db->prepare('DELETE FROM comments WHERE userId = ?');
+		$req->execute([
+			$userId
 		]);
 	}
 }
