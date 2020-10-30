@@ -72,7 +72,7 @@ class FrontController
 
 	public function connection($post){
 		if (isset($_SESSION['errors'])) {
-			unset($_SESSION['errors'], $_SESSION['registerError']);
+			unset($_SESSION['errors']);
 			session_destroy();
 		}
 		if (isset($post['connection'])) {
@@ -95,7 +95,7 @@ class FrontController
 
 	public function register($post){
 		if (isset($_SESSION['registerError'])) {
-			unset($_SESSION['errors'], $_SESSION['registerError']);
+			unset($_SESSION['registerError']);
 			session_destroy();
 		}
 		if (isset($post['register'])) {
