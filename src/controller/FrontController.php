@@ -71,6 +71,10 @@ class FrontController
 	}
 
 	public function connection($post){
+		if (isset($_SESSION['errors'])) {
+			unset($_SESSION['errors'], $_SESSION['registerError']);
+			session_destroy();
+		}
 		if (isset($post['connection'])) {
 			if (!empty($post['login']) && !empty($post['password'])) {
 				$manager = new UserManager();
@@ -90,6 +94,10 @@ class FrontController
 	}
 
 	public function register($post){
+		if (isset($_SESSION['registerError'])) {
+			unset($_SESSION['errors'], $_SESSION['registerError']);
+			session_destroy();
+		}
 		if (isset($post['register'])) {
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
 				$manager= new UserManager();
@@ -99,7 +107,6 @@ class FrontController
 				else {
 					$manager->register($post);
 					$_SESSION['login'] = $post['login'];
-					//$userId = $manager->getUserData();
 					$userId = $manager->getUser();
 					$_SESSION['userId'] = $userId->getId();
 					header('Location:' . HOST);
