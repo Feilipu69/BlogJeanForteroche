@@ -1,2 +1,2 @@
 # BlogJeanForteroche
-Projet 4 DWJ Openclassrooms EN COURS
+Projet 4 DWJ Openclassrooms
