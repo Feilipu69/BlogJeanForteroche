@@ -80,7 +80,7 @@ class FrontController
 					$_SESSION['roleId'] = $roleId->getName();
 					header('Location:' . HOST);
 				} else {
-					$_SESSION['errors'] = "Login ou mot de passe incorrectes";
+					$_SESSION['errors'] = "Login ou mot de passe incorrects";
 				}
 			}
 		}
@@ -148,11 +148,6 @@ class FrontController
 	public function deleteCount($login){
 		$manager = new UserManager();
 		$manager->deleteCount($login);
-		/*
-		unset($_SESSION['login'], $_SESSION['userId'], $_SESSION['errors'], $_SESSION['registerError']);
-		session_destroy();
-		header('Location:' . HOST);
-		*/
 		$this->disconnection();
 	}
 }

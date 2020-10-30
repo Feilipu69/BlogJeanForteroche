@@ -6,15 +6,6 @@ use Bihin\Forteroche\src\model\Comment;
 
 class FlagCommentManager extends DbConnect
 {
-	/*
-	public function flagCommentPlus($commentId){
-		$req = $this->db->prepare('INSERT INTO flagComments (userId, commentId) VALUES(:userId, :commentId)');
-		$req->execute([ 
-			':userId' => $_SESSION['userId'],
-			':commentId' => $commentId 
-		]);
-	}
-	*/
 	public function flagCommentPlus($commentId){
 		$req = $this->db->prepare('INSERT INTO flagComments (commentId, userIdFlagged, episodeId, userId) SELECT id, userId, episodeId, dislike FROM comments WHERE id = ?');
 		$req->execute([ 

@@ -10,24 +10,17 @@
 				<?php
 				if ($episode->getChapter() > 1) {
 					?>
-					<li class="page-item order-0"><a class="page-link" href="<?= HOST; ?>/episode/<?= $episode->getChapter() - 1; ?>">Précédent</a></li>
+					<li class="page-item order-0"><a class="page-link" href="<?= HOST; ?>/episode/<?= $episode->getChapter() - 1; ?>">&laquo;</a></li>
 					<?php
 				}
 				$lastChapter = end($episodes)->getChapter(); 
 				if ($episode->getChapter() < $lastChapter) {
 					?>
-					<li class="page-item order-2"><a class="page-link" href="<?= HOST; ?>/episode/<?= $episode->getChapter() + 1; ?>">Suivant</a></li>
+					<li class="page-item order-2"><a class="page-link" href="<?= HOST; ?>/episode/<?= $episode->getChapter() + 1; ?>">&raquo;</a></li>
 					<?php
 				}
 				?>
-
-				<?php
-				foreach($episodes as $episodePage) {
-					?>
-					<li class="page-item order-1"><a class="page-link" href="<?= HOST; ?>/episode/<?= $episodePage->getChapter(); ?>"><?= $episodePage->getChapter(); ?></a></li>
-					<?php
-				}
-				?>
+				<li class="page-item order-1"><a class="page-link" href="<?= HOST; ?>/episode/<?= $episode->getChapter(); ?>"><?= $episode->getChapter(); ?></a></li>
 			</ul>
 		</nav>
 	</div>
