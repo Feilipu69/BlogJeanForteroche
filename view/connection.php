@@ -5,6 +5,7 @@ if (isset($_SESSION['errors'])) {
 	<?php
 }
 ?>
+<h3>Accès à l'espace membres</h3>
 <form method="post" action="<?= HOST; ?>/connection">
 	<label for="login">Login : </label>
 	<br>
@@ -15,6 +16,6 @@ if (isset($_SESSION['errors'])) {
 	<input type="password" name="password" id="password" required />
 	<br>
 	<input type="submit" name="connection" id="connection" value="Connexion" class="btn btn-dark mt-4" />
-	<a href="<?= HOST; ?>/connection"><input type="button" value="Annuler" class="btn btn-dark mt-4" /></a>
+	<button class="btn btn-dark mt-4" onclick="window.location.href='<?= HOST; ?>/connection';">Annuler</button>
 </form>
 

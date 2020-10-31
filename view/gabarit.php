@@ -15,9 +15,6 @@
 					<h1 class="text-center"><a href="<?= HOST; ?>" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
 					<h3 class="text-white text-center">Jean Forteroche</h3>
 					<nav class="navbar navbar-expand-md navbar-dark text-center">
-						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent">
-							<span class="navbar-toggler-icon"></span>
-						</button>
 						<div id="navbarContent" class="collapse navbar-collapse">
 							<ul class="navbar-nav ml-auto">
 								<?php
@@ -60,18 +57,18 @@
 						</div>
 					</nav>
 				</div>
-				<?php
-				if (isset($_SESSION['login'])) {
-					?>
-					<p class="lead text-info pt-2">Bienvenue <strong><?= $_SESSION['login']; ?></strong></p>
-					<?php
-				}
-				?>
 				<img src="<?= HOST; ?>/public/trainAlaska.png" alt="Train d'Alaska" class="img-fluid mb-3" />
 			</header>
 		</div>
 		<div class="container">
 			<section>
+				<?php
+				if (isset($_SESSION['login'])) {
+					?>
+					<p class="lead text-primary pt-2">Espace membre de : <strong><?= $_SESSION['login']; ?></strong></p>
+					<?php
+				}
+				?>
 				<?= $content; ?>
 			</section>
 		</div>
