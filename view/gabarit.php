@@ -24,7 +24,7 @@
 										<a class="nav-link" href="<?= HOST; ?>">Accueil</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="<?= HOST; ?>/connection">Compte</a>
+										<a class="nav-link" href="<?= HOST; ?>/connection">Connexion</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="<?= HOST; ?>/inscription">Inscription</a>
