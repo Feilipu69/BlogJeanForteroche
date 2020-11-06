@@ -1,3 +1,11 @@
+<?php
+if (isset($_SESSION['registerError'])) {
+	?>
+	<div class="alert alert-danger" role="alert"><?= $_SESSION['registerError']; ?></div>
+	<?php
+}
+?>
+
 <h3>Modifications de vos données</h3>
 <form method="post" action="<?= HOST; ?>/updateData">
 	<label for="login">Login : </label>

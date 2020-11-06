@@ -73,7 +73,6 @@ class FrontController
 	public function connection($post){
 		if (isset($_SESSION['errors'])) {
 			unset($_SESSION['errors']);
-			session_destroy();
 		}
 		if (isset($post['connection'])) {
 			if (!empty($post['login']) && !empty($post['password'])) {
@@ -96,7 +95,6 @@ class FrontController
 	public function register($post){
 		if (isset($_SESSION['registerError'])) {
 			unset($_SESSION['registerError']);
-			session_destroy();
 		}
 		if (isset($post['register'])) {
 			if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
@@ -119,13 +117,17 @@ class FrontController
 	}
 
 	public function updateData($post){
+		if (isset($_SESSION['registerError'])) {
+			unset($_SESSION['registerError']);
+		}
 		if (isset($_SESSION['login'])) {
 			$manager= new UserManager();
 			$userData = $manager->getUserData();
 			if (isset($post['updateData'])) {
 				if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
 					if ($manager->checkUser($post)) {
-						echo 'Ce login existe déjà.';
+						//echo 'Ce login existe déjà.';
+						$_SESSION['registerError'] = 'Ce login existe déjà';
 					}
 					else {
 						$manager->updateData($post);

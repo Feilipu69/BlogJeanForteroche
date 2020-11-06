@@ -3,11 +3,11 @@ if (!isset($_SESSION['login'])) {
 	?>
 	<div class="jumbotron">
 		<p class="h3 text-primary">Bienvenue chères lectrices et chers lecteurs.</p>
-		<p>Avec ce nouveau roman, j'ai voulu vous donner la possibilité de participer à sa rédaction via vos avis et commentaires.
+		<p>Avec ce nouveau roman, j'ai voulu vous donner la possibilité de participer à sa rédaction via <strong>vos avis et commentaires</strong>.
 		<br>
-		Si l'aventure vous tente, inscrivez-vous en cliquant dans le menu.
+		Si l'aventure vous tente, n'hésitez plus et <strong><a href="<?= HOST; ?>/inscription">inscrivez-vous</a></strong>.
 		<br>
-		Merci à vous.
+		Merci à vous et bonne lecture.
 		<br>
 		Jean Forteroche
 		</p>

@@ -26,7 +26,7 @@
 									<li class="nav-item">
 										<a class="nav-link" href="<?= HOST; ?>/connection">Connexion</a>
 									</li>
-									<li class="nav-item">
+									<li id="inscription" class="nav-item">
 										<a class="nav-link" href="<?= HOST; ?>/inscription">Inscription</a>
 									</li>
 									<?php
@@ -75,7 +75,9 @@
 
 		<script>
 			tinymce.init({
-				selector: 'textarea#form'
+				selector: 'textarea#form',
+				plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+				toolbar_mode: 'floating',
 			});
 		</script>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

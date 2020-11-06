@@ -7,7 +7,7 @@ use Bihin\Forteroche\src\model\Episode;
 class EpisodeManager extends DbConnect
 {
 	public function getEpisodes(){
-		$req = $this->db->query('SELECT id, chapter, title, content, DATE_FORMAT(creationDate, "%d/%m/%Y à %H:%i:%s") AS creationDate, DATE_FORMAT(updateDate, "%d/%m/%Y à %H:%i:%s") AS updateDate FROM episodes ORDER BY chapter');
+		$req = $this->db->query('SELECT id, chapter, title, content, DATE_FORMAT(creationDate, "%d/%m/%Y") AS creationDate, DATE_FORMAT(updateDate, "%d/%m/%Y") AS updateDate FROM episodes ORDER BY chapter');
 		while ($data = $req->fetch()) {
 			$episodes[] = new Episode($data);
 		}
