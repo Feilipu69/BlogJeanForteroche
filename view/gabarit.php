@@ -15,7 +15,7 @@
 					<h1 class="text-center"><a href="<?= HOST; ?>" class="text-white text-decoration-none">Billet simple pour l'Alaska</a></h1>
 					<h3 class="text-white text-center">Jean Forteroche</h3>
 					<nav class="navbar navbar-expand-md navbar-dark text-center">
-						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent">
+						<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarContent" aria-label="menu hamburger">
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div id="navbarContent" class="collapse navbar-collapse">
