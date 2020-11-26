@@ -59,11 +59,11 @@ class FrontController
 		$flagByUser = $flagManager->countFlag($commentId);
 
 		if ($flagByUser[0] === '0') {
-			$flagcomment = $manager->commentFlagged($commentId);
-			$addFlag = $flagManager->flagCommentPlus($commentId);
+			$manager->commentFlagged($commentId);
+			$flagManager->flagCommentPlus($commentId);
 		} else {
-			$unflagComment = $manager->commentUnflagged($commentId);
-			$lessFlag = $flagManager->flagCommentLess($commentId);
+			$manager->commentUnflagged($commentId);
+			$flagManager->flagCommentLess($commentId);
 		}
 
 		$comment = $manager->getComment($commentId);
@@ -126,7 +126,6 @@ class FrontController
 			if (isset($post['updateData'])) {
 				if (!empty($post['login']) && !empty($post['password']) && !empty($post['email'])) {
 					if ($manager->checkUser($post)) {
-						//echo 'Ce login existe déjà.';
 						$_SESSION['registerError'] = 'Ce login existe déjà';
 					}
 					else {
